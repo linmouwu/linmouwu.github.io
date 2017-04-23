@@ -74,7 +74,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Data Engineer," />
 
 
 
@@ -90,15 +90,17 @@
 
 
 
-<meta name="description" content="NULL, VOID, NIL">
-<meta property="og:type" content="website">
-<meta property="og:title" content="二进制人生">
-<meta property="og:url" content="http://linmouwu.com/index.html">
+<meta name="description" content="有幸接到了来自Petuum Inc.的面试。本来对其了解不多，google了相关资料后，对这个startup充满了期待。他们开发的Parallel Machine Learning System（PMLS）具有非凡的创造力和发展潜力。真心希望能有机会加入他们团队。以下是关于Petuum的学习总结。 主要参考资料：Petuum: A New Platform for Distributed Mach">
+<meta name="keywords" content="Data Engineer">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Petuum 入门">
+<meta property="og:url" content="http://linmouwu.com/2017/04/23/petuum/index.html">
 <meta property="og:site_name" content="二进制人生">
-<meta property="og:description" content="NULL, VOID, NIL">
+<meta property="og:description" content="有幸接到了来自Petuum Inc.的面试。本来对其了解不多，google了相关资料后，对这个startup充满了期待。他们开发的Parallel Machine Learning System（PMLS）具有非凡的创造力和发展潜力。真心希望能有机会加入他们团队。以下是关于Petuum的学习总结。 主要参考资料：Petuum: A New Platform for Distributed Mach">
+<meta property="og:updated_time" content="2017-04-23T21:53:10.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="二进制人生">
-<meta name="twitter:description" content="NULL, VOID, NIL">
+<meta name="twitter:title" content="Petuum 入门">
+<meta name="twitter:description" content="有幸接到了来自Petuum Inc.的面试。本来对其了解不多，google了相关资料后，对这个startup充满了期待。他们开发的Parallel Machine Learning System（PMLS）具有非凡的创造力和发展潜力。真心希望能有机会加入他们团队。以下是关于Petuum的学习总结。 主要参考资料：Petuum: A New Platform for Distributed Mach">
 
 
 
@@ -126,13 +128,13 @@
 
 
 
-  <link rel="canonical" href="http://linmouwu.com/"/>
+  <link rel="canonical" href="http://linmouwu.com/2017/04/23/petuum/"/>
 
 
 
 
 
-  <title>二进制人生</title>
+  <title>Petuum 入门 | 二进制人生</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -157,9 +159,7 @@
     
   
 
-  <div class="container sidebar-position-right 
-   page-home 
- ">
+  <div class="container sidebar-position-right page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -272,9 +272,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -304,10 +304,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2017/04/23/petuum/" itemprop="url">
-                  Petuum 入门
-                </a>
+                Petuum 入门
               
             
           </h1>
@@ -379,9 +376,7 @@
       
 
       
-        
-          
-            <p>有幸接到了来自Petuum Inc.的面试。<br>本来对其了解不多，google了相关资料后，对这个startup充满了期待。他们开发的Parallel Machine Learning System（PMLS）具有非凡的创造力和发展潜力。真心希望能有机会加入他们团队。<br>以下是关于Petuum的学习总结。</p>
+        <p>有幸接到了来自Petuum Inc.的面试。<br>本来对其了解不多，google了相关资料后，对这个startup充满了期待。他们开发的Parallel Machine Learning System（PMLS）具有非凡的创造力和发展潜力。真心希望能有机会加入他们团队。<br>以下是关于Petuum的学习总结。</p>
 <h2 id="主要参考资料："><a href="#主要参考资料：" class="headerlink" title="主要参考资料："></a>主要参考资料：</h2><p><a href="https://www.cs.cmu.edu/~./seunghak/petuum_kdd15.pdf" target="_blank" rel="external">Petuum: A New Platform for Distributed Machine Learning on Big Data</a><br><a href="http://sailing-lab.wixsite.com/sailing-pmls" target="_blank" rel="external">Parallel Machine Learning System</a><br><a href="https://www.youtube.com/watch?v=WhxSObroM8I" target="_blank" rel="external">Petuum Inc. Youtube</a><br><a href="https://papers.nips.cc/paper/4894-more-effective-distributed-ml-via-a-stale-synchronous-parallel-parameter-server" target="_blank" rel="external">More Effective Distributed ML via a Stale Synchronous Parallel Parameter Server - Paper</a><br><a href="https://www.cs.cmu.edu/~qho/ssp_nips2013.pdf" target="_blank" rel="external">More Effective Distributed ML via a Stale Synchronous Parallel Parameter Server - Slides</a></p>
 <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Petuum是一个新兴的，基于大数据的分布式机器学习平台。其主要目的是为了解决当前分布式机器学习框架所面临的资源利用率低，通用性差问题。由于机器学习算法本身具有“容错性”，“动态结构依赖”和“非均匀收敛”等特点，Petuum采用称为Stale Synchronous Parallel（SSP，自译为“陈旧同步并行”）的一致性模型，来保证整个系统的资源高效，可扩展性，正确性和通用性。</p>
 <p>目前市面上也存在一些分布式机器学习的工具或者平台，但各有其弊端。类似于TensorFlow和CNTK等机器学习工具虽然保证里计算的高效性和结果的正确性，但是其开发是针对于某一类特定的机器学习问题的，因此并不具备通用性；而更通用的大数据平台，例如Spark，其一致性模型是Bulk Synchronous Parallel(BSP，自译为“块同步并行”)。而Petuum的提出正是为了解决这个问题。</p>
@@ -401,185 +396,72 @@
 </ul>
 <p>综上，SSP既能保证结果收敛，又能保证运算的高效性。当SSP的stale阀值为0，SSP=BSP；当SSP的stale阀值趋于无穷，SSP=Asynchronous。</p>
 
-          
+      
+    </div>
+
+    <div>
+      
         
+
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
     <div>
+      
+        
+
       
     </div>
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://linmouwu.com/2017/04/22/HexoIntro/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Albert Lin">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="二进制人生">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/04/22/HexoIntro/" itemprop="url">
-                  初来乍到
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-22T14:44:31-04:00">
-                04/22/2017
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/杂的文/" itemprop="url" rel="index">
-                    <span itemprop="name">杂的文</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/Data-Engineer/" rel="tag"># Data Engineer</a>
           
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
         
-          
-            <h2 id="就一句话"><a href="#就一句话" class="headerlink" title="就一句话"></a>就一句话</h2><p>林学弟的个人博客搭建起来了。</p>
-<h2 id="再加一句"><a href="#再加一句" class="headerlink" title="再加一句"></a>再加一句</h2><p>欢迎守卫守护女巫撒毒猎人开抢；我是白痴，悍跳预言家。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
       
 
       
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/22/HexoIntro/" rel="prev" title="初来乍到">
+                初来乍到 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
 
       
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -587,6 +469,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -606,8 +492,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -669,6 +564,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#主要参考资料："><span class="nav-number">1.</span> <span class="nav-text">主要参考资料：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">2.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bosen-Poseidon-and-Strads"><span class="nav-number">3.</span> <span class="nav-text">Bosen, Poseidon and Strads</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Stale-Synchronous-Parallel"><span class="nav-number">4.</span> <span class="nav-text">Stale Synchronous Parallel</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -782,6 +693,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
 
   
 
