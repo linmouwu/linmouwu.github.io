@@ -74,7 +74,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Greedy,DP," />
+  <meta name="keywords" content="Database,NoSQL," />
 
 
 
@@ -90,17 +90,17 @@
 
 
 
-<meta name="description" content="LeetCode上的股票买卖问题不少，相互之前有联系又有差别，统一整理一下。主要解法都是贪心或者动态规划。 Buy one and sell one计算当前价格与之前最小价格的差，找出这个差中最大的值便可。1234567891011121314151617public int maxProfit(int[] prices) &amp;#123;    if (prices == null || price">
-<meta name="keywords" content="Greedy,DP">
+<meta name="description" content="荒废了好几天啊。放假了就疯狂地哪儿哪儿都去玩，无心向学！！今晚好不容易完全空下来了，继续整理Petuum的面试复习资料吧。这次主题是NoSQL。 主要参考资料：NoSQL和MySQL的区别ACID维基BASE维基CAP维基 ACIDACID是事务（transaction）的属性，对于不支持事务的数据库搜索引擎而言，并不包含ACID属性。原子性（Atomicity）: all or nothing;">
+<meta name="keywords" content="Database,NoSQL">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Best Time To Buy And Sell Stock">
-<meta property="og:url" content="http://linmouwu.com/2017/04/26/buySellStock/index.html">
+<meta property="og:title" content="NoSQL 复习">
+<meta property="og:url" content="http://linmouwu.com/2017/05/31/noSQL/index.html">
 <meta property="og:site_name" content="二进制人生">
-<meta property="og:description" content="LeetCode上的股票买卖问题不少，相互之前有联系又有差别，统一整理一下。主要解法都是贪心或者动态规划。 Buy one and sell one计算当前价格与之前最小价格的差，找出这个差中最大的值便可。1234567891011121314151617public int maxProfit(int[] prices) &amp;#123;    if (prices == null || price">
-<meta property="og:updated_time" content="2017-04-26T16:40:54.000Z">
+<meta property="og:description" content="荒废了好几天啊。放假了就疯狂地哪儿哪儿都去玩，无心向学！！今晚好不容易完全空下来了，继续整理Petuum的面试复习资料吧。这次主题是NoSQL。 主要参考资料：NoSQL和MySQL的区别ACID维基BASE维基CAP维基 ACIDACID是事务（transaction）的属性，对于不支持事务的数据库搜索引擎而言，并不包含ACID属性。原子性（Atomicity）: all or nothing;">
+<meta property="og:updated_time" content="2017-06-01T12:13:44.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Best Time To Buy And Sell Stock">
-<meta name="twitter:description" content="LeetCode上的股票买卖问题不少，相互之前有联系又有差别，统一整理一下。主要解法都是贪心或者动态规划。 Buy one and sell one计算当前价格与之前最小价格的差，找出这个差中最大的值便可。1234567891011121314151617public int maxProfit(int[] prices) &amp;#123;    if (prices == null || price">
+<meta name="twitter:title" content="NoSQL 复习">
+<meta name="twitter:description" content="荒废了好几天啊。放假了就疯狂地哪儿哪儿都去玩，无心向学！！今晚好不容易完全空下来了，继续整理Petuum的面试复习资料吧。这次主题是NoSQL。 主要参考资料：NoSQL和MySQL的区别ACID维基BASE维基CAP维基 ACIDACID是事务（transaction）的属性，对于不支持事务的数据库搜索引擎而言，并不包含ACID属性。原子性（Atomicity）: all or nothing;">
 
 
 
@@ -128,13 +128,13 @@
 
 
 
-  <link rel="canonical" href="http://linmouwu.com/2017/04/26/buySellStock/"/>
+  <link rel="canonical" href="http://linmouwu.com/2017/05/31/noSQL/"/>
 
 
 
 
 
-  <title>Best Time To Buy And Sell Stock | 二进制人生</title>
+  <title>NoSQL 复习 | 二进制人生</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -283,7 +283,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://linmouwu.com/2017/04/26/buySellStock/">
+    <link itemprop="mainEntityOfPage" href="http://linmouwu.com/2017/05/31/noSQL/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Albert Lin">
@@ -304,7 +304,7 @@
             
             
               
-                Best Time To Buy And Sell Stock
+                NoSQL 复习
               
             
           </h1>
@@ -319,8 +319,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-26T08:56:23-04:00">
-                04/26/2017
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-31T21:49:50-04:00">
+                05/31/2017
               </time>
             
 
@@ -342,8 +342,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法与数据结构/" itemprop="url" rel="index">
-                    <span itemprop="name">算法与数据结构</span>
+                  <a href="/categories/计算机基础/" itemprop="url" rel="index">
+                    <span itemprop="name">计算机基础</span>
                   </a>
                 </span>
 
@@ -376,10 +376,28 @@
       
 
       
-        <p>LeetCode上的股票买卖问题不少，相互之前有联系又有差别，统一整理一下。主要解法都是贪心或者动态规划。</p>
-<h2 id="Buy-one-and-sell-one"><a href="#Buy-one-and-sell-one" class="headerlink" title="Buy one and sell one"></a>Buy one and sell one</h2><p>计算当前价格与之前最小价格的差，找出这个差中最大的值便可。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">public int maxProfit(int[] prices) &#123;</div><div class="line">    if (prices == null || prices.length == 0) &#123;</div><div class="line">        return 0;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    int min = prices[0];</div><div class="line">    int result = 0;</div><div class="line"></div><div class="line">    for (int i = 1; i &lt; prices.length; i++) &#123;</div><div class="line">        if (prices[i] &lt; min) &#123;</div><div class="line">            min = prices[i];</div><div class="line">        &#125;</div><div class="line">        result = Math.max(prices[i] - min, result);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    return result;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h2 id="Buy-and-sell-multiple-times"><a href="#Buy-and-sell-multiple-times" class="headerlink" title="Buy and sell multiple times"></a>Buy and sell multiple times</h2><p>只要当前的价格比前一次高，就可以卖出。这个跟现实不一样的地方在于“滞后”买入。就是当我们发现i＋1比i高的时候，我们假设i已经买了；当i＋1不必i高，我们假设不买。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">public int maxProfit(int[] prices) &#123;</div><div class="line">    if (prices == null || prices.length == 0) &#123;</div><div class="line">        return 0;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    int total = 0;</div><div class="line"></div><div class="line">    for (int i = 0; i &lt; prices.length - 1; i++) &#123;</div><div class="line">        if (prices[i + 1] &gt; prices[i]) total += prices[i + 1] - prices[i];</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    return total;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h2 id="Buy-and-sell-at-K-times"><a href="#Buy-and-sell-at-K-times" class="headerlink" title="Buy and sell at K times"></a>Buy and sell at K times</h2><p>典型动态规划题，难点在于确立动态规划方程。<br>代码中，dp[i][j]表示第i次transaction的时候，第j个stock之前所能获得的最大profit。<br>那么对应的，在第i＋1次的时候，最大收益应该是：<br>dp[i+1][j] = max(dp[i+1][j-1], dp[i][l] + prices[j] - prices[l])，l从0到j－1。<br>dp[i][j-1]说明在j这个stock位置，我们不抛出股票，那最大利润就是K次transaction里的j－1个位置的利润；<br>dp[i][l] + prices[j] - prices[l]说明我们抛出股票，那么最大利润就是在从0到j－1的位置里，我们找到最高的i的抛出价格l，抛出l，并增加利润prices[j]-prices[l]。<br>最tricky的地方在于用了一个tmp表示从0到j－1的可能最大利润。这就避免重复计算。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">public int maxProfit(int[] prices, int k) &#123;</div><div class="line">    if(prices == null || prices.length == 0)&#123;</div><div class="line">        return 0;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    int[][] dp = new int[k+1][prices.length];</div><div class="line"></div><div class="line">    for(int i = 1; i &lt;= k; i++)&#123;</div><div class="line">        int tmp = dp[i - 1][0] - prices[0];</div><div class="line">        for(int j = 1; j &lt; prices.length; j++)&#123;</div><div class="line">            dp[i][j] = Math.max(dp[i][j - 1], prices[j] + tmp);</div><div class="line">            tmp = Math.max(tmp, dp[i - 1][j] - prices[j]);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    return dp[k][prices.length - 1];</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+        <p>荒废了好几天啊。放假了就疯狂地哪儿哪儿都去玩，无心向学！！今晚好不容易完全空下来了，继续整理Petuum的面试复习资料吧。这次主题是NoSQL。</p>
+<h2 id="主要参考资料："><a href="#主要参考资料：" class="headerlink" title="主要参考资料："></a>主要参考资料：</h2><p><a href="http://noican.blog.51cto.com/4081966/1355316" target="_blank" rel="external">NoSQL和MySQL的区别</a><br><a href="https://en.wikipedia.org/wiki/ACID" target="_blank" rel="external">ACID维基</a><br><a href="https://en.wikipedia.org/wiki/Consistency_model" target="_blank" rel="external">BASE维基</a><br><a href="https://en.wikipedia.org/wiki/CAP_theorem" target="_blank" rel="external">CAP维基</a></p>
+<h2 id="ACID"><a href="#ACID" class="headerlink" title="ACID"></a>ACID</h2><p>ACID是事务（transaction）的属性，对于不支持事务的数据库搜索引擎而言，并不包含ACID属性。<br>原子性（Atomicity）: all or nothing; 不可能只跑一部分的transaction，必须全部执行或者全部不执行；方法包括：check point，log；<br>一致性（consistency）: from one valid state to another; 数据库的改变前后的状态都是一致有效的；<br>隔离性（isolation）: two transaction should not interfere with each other; 事务之间不相互干扰，并不知道彼此存在；方法：lock;<br>持久性（durability）: permanent change; 变化一旦发生就是持久化的，不会消失；</p>
+<h2 id="事务的隔离等级"><a href="#事务的隔离等级" class="headerlink" title="事务的隔离等级"></a>事务的隔离等级</h2><p>未提交读（Read Uncommitted）：允许脏读，也就是可能读取到其他会话中未提交事务修改的数据<br>提交读（Read Committed）：只能读取到已经提交的数据。Oracle等多数数据库默认都是该级别 (不重复读)<br>可重复读（Repeated Read）：可重复读。在同一个事务内的查询都是事务开始时刻一致的，InnoDB默认级别。在SQL标准中，该隔离级别消除了不可重复读，但是还存在幻象读<br>串行读（Serializable）：完全串行化的读，每次读都需要获得表级共享锁，读写相互都会阻塞</p>
+<p>脏读：读取到未commit的数据；<br>不重复读：一个事务内两次读取同一数据的内容不一致；<br>幻读：全表操作会忽视事务过程中新插入的数据，需要表级锁；</p>
+<h2 id="BASE"><a href="#BASE" class="headerlink" title="BASE"></a>BASE</h2><p>基本可用（basically available）: 系统基本可用；<br>软状态（soft state）: 系统有一段时间不同步；<br>最终一致性（eventual consistency）: 数据最终是一致的；</p>
+<h2 id="CAP"><a href="#CAP" class="headerlink" title="CAP"></a>CAP</h2><p>CAP是分布式数据库（主要是NoSQL数据库）所要满足却不能同时满足的特点。<br>一致性（consistency）: 所有读取都能读到最新数据；Every read receives the most recent write or an error；<br>可用性（availability）: 每个请求不管成功或者失败都有响应；Every request receives a (non-error) response – without guarantee that it contains the most recent write；<br>分区容错性（partition tolerance）: 系统正常运行，即使有节点出现一场；The system continues to operate despite an arbitrary number of messages being dropped (or delayed) by the network between nodes；</p>
+<h2 id="Sharding-and-Replication"><a href="#Sharding-and-Replication" class="headerlink" title="Sharding and Replication"></a>Sharding and Replication</h2><p>Sharding: put different set of data into different nodes; 分片，包括水平（horizontal）和垂直（vertical）两种方式；<br>Replication: replicate the same data into different nodes; 复制；</p>
+<ul>
+<li>Master-slave replication: master write, slaves read, supports reading; single node failure;</li>
+<li>Peer-to-peer replication: all read and write; no single node failure;</li>
+</ul>
+<h2 id="一致性类型"><a href="#一致性类型" class="headerlink" title="一致性类型"></a>一致性类型</h2><ul>
+<li>strong</li>
+<li>weak</li>
+<li>eventual</li>
+<li>session</li>
+</ul>
+<h2 id="一致性手段"><a href="#一致性手段" class="headerlink" title="一致性手段"></a>一致性手段</h2><p>Pessimistic（消极手段）: 预防不一致，例如用锁，实现serialization；<br>Optimistic（积极手段）: 允许一致但检测并回滚，例如时间戳Version Control；</p>
+<p>Quorom: 一致性手段，pessimistic：W &gt; N/2; R+W &gt; N; N是节点数量；</p>
+<h2 id="两阶段锁2PL"><a href="#两阶段锁2PL" class="headerlink" title="两阶段锁2PL"></a>两阶段锁2PL</h2><p>实现serialize transactions。<br>阶段一：expanding， acquire locks；<br>阶段二：shrinking， release lock；</p>
+<h2 id="两阶段提交2PC"><a href="#两阶段提交2PC" class="headerlink" title="两阶段提交2PC"></a>两阶段提交2PC</h2><p>由一个coordinator管理是否可以提交事务。<br>Coordinator collect the voting from all worker; coordinator decides whether the transaction is OK or not; 保证原子性，一致性；</p>
 
       
     </div>
@@ -409,9 +427,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Greedy/" rel="tag"># Greedy</a>
+            <a href="/tags/Database/" rel="tag"># Database</a>
           
-            <a href="/tags/DP/" rel="tag"># DP</a>
+            <a href="/tags/NoSQL/" rel="tag"># NoSQL</a>
           
         </div>
       
@@ -424,8 +442,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/04/25/systemDesign/" rel="next" title="系统设计 初学">
-                <i class="fa fa-chevron-left"></i> 系统设计 初学
+              <a href="/2017/05/19/mySQL/" rel="next" title="MySQL复习">
+                <i class="fa fa-chevron-left"></i> MySQL复习
               </a>
             
           </div>
@@ -433,10 +451,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/05/05/linuxCommand/" rel="prev" title="常用Linux命令">
-                常用Linux命令 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -565,7 +579,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Buy-one-and-sell-one"><span class="nav-number">1.</span> <span class="nav-text">Buy one and sell one</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Buy-and-sell-multiple-times"><span class="nav-number">2.</span> <span class="nav-text">Buy and sell multiple times</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Buy-and-sell-at-K-times"><span class="nav-number">3.</span> <span class="nav-text">Buy and sell at K times</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#主要参考资料："><span class="nav-number">1.</span> <span class="nav-text">主要参考资料：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ACID"><span class="nav-number">2.</span> <span class="nav-text">ACID</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事务的隔离等级"><span class="nav-number">3.</span> <span class="nav-text">事务的隔离等级</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BASE"><span class="nav-number">4.</span> <span class="nav-text">BASE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CAP"><span class="nav-number">5.</span> <span class="nav-text">CAP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sharding-and-Replication"><span class="nav-number">6.</span> <span class="nav-text">Sharding and Replication</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一致性类型"><span class="nav-number">7.</span> <span class="nav-text">一致性类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一致性手段"><span class="nav-number">8.</span> <span class="nav-text">一致性手段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#两阶段锁2PL"><span class="nav-number">9.</span> <span class="nav-text">两阶段锁2PL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#两阶段提交2PC"><span class="nav-number">10.</span> <span class="nav-text">两阶段提交2PC</span></a></li></ol></div>
             
 
           </div>
