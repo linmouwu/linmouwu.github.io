@@ -1,0 +1,783 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Garbage Collection," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="小yuki同学还在继续面petuum，心里充满了无比羡慕！羡慕归羡慕，换个角度这又进一步说明了，得失天命。如果不是没有被petuum拒了，我也没机会认识DC的可爱的小伙伴。废话结束，切入正题。本期节目我们来梳理一下垃圾回收机制，主要是Java和Python的垃圾回收机制。 主要参考资料：深入理解Java垃圾回收机制怎么在面试过程中回答GC相关问题 Java内存分配机制：先大体回顾一下Java内存分">
+<meta name="keywords" content="Garbage Collection">
+<meta property="og:type" content="article">
+<meta property="og:title" content="常见GC(垃圾回收)机制">
+<meta property="og:url" content="http://linmouwu.com/2017/06/09/garbageCollection/index.html">
+<meta property="og:site_name" content="二进制人生">
+<meta property="og:description" content="小yuki同学还在继续面petuum，心里充满了无比羡慕！羡慕归羡慕，换个角度这又进一步说明了，得失天命。如果不是没有被petuum拒了，我也没机会认识DC的可爱的小伙伴。废话结束，切入正题。本期节目我们来梳理一下垃圾回收机制，主要是Java和Python的垃圾回收机制。 主要参考资料：深入理解Java垃圾回收机制怎么在面试过程中回答GC相关问题 Java内存分配机制：先大体回顾一下Java内存分">
+<meta property="og:updated_time" content="2017-06-09T18:01:57.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="常见GC(垃圾回收)机制">
+<meta name="twitter:description" content="小yuki同学还在继续面petuum，心里充满了无比羡慕！羡慕归羡慕，换个角度这又进一步说明了，得失天命。如果不是没有被petuum拒了，我也没机会认识DC的可爱的小伙伴。废话结束，切入正题。本期节目我们来梳理一下垃圾回收机制，主要是Java和Python的垃圾回收机制。 主要参考资料：深入理解Java垃圾回收机制怎么在面试过程中回答GC相关问题 Java内存分配机制：先大体回顾一下Java内存分">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://linmouwu.com/2017/06/09/garbageCollection/"/>
+
+
+
+
+
+  <title>常见GC(垃圾回收)机制 | 二进制人生</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">二进制人生</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">码之</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            一览无遗
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            物以类聚
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            刻板印象
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            时间煮雨
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            我的国
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            指北针
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://linmouwu.com/2017/06/09/garbageCollection/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Albert Lin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="二进制人生">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                常见GC(垃圾回收)机制
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-09T13:32:06-04:00">
+                06/09/2017
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/计算机基础/" itemprop="url" rel="index">
+                    <span itemprop="name">计算机基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>小yuki同学还在继续面petuum，心里充满了无比羡慕！羡慕归羡慕，换个角度这又进一步说明了，得失天命。如果不是没有被petuum拒了，我也没机会认识DC的可爱的小伙伴。<br>废话结束，切入正题。本期节目我们来梳理一下垃圾回收机制，主要是Java和Python的垃圾回收机制。</p>
+<h2 id="主要参考资料："><a href="#主要参考资料：" class="headerlink" title="主要参考资料："></a>主要参考资料：</h2><p><a href="http://www.cnblogs.com/sunniest/p/4575144.html" target="_blank" rel="external">深入理解Java垃圾回收机制</a><br><a href="https://www.zhihu.com/question/35164211" target="_blank" rel="external">怎么在面试过程中回答GC相关问题</a></p>
+<h2 id="Java内存分配机制："><a href="#Java内存分配机制：" class="headerlink" title="Java内存分配机制："></a>Java内存分配机制：</h2><p>先大体回顾一下Java内存分配机制。Java的内存管理由JVM进行。JVM将内存分成以下几个部分：</p>
+<ul>
+<li>程序计数器(Program Counter Register): 是一块较小的内存空间，它的作用可以看做是当前线程所执行字节码的行号指示器。是线程私有，生命周期与线程相同。</li>
+<li>栈(Stack): 用于存储局部变量表、操作栈、动作链接、方法出口等信息。</li>
+<li>本地方法栈(Native Method Stacks): 与虚拟机栈所发挥的作用是非常相似的，其区别不过是虚拟机栈为虚拟机执行Java方法(也就是字节码)服务，而本地方法栈则为虚拟机所使用到的Native方法服务。</li>
+<li>堆(Heap): 新建的对象实例；</li>
+<li>方法区(Method Area): 包含方法对应的类和静态变量；</li>
+</ul>
+<h2 id="垃圾回收机制："><a href="#垃圾回收机制：" class="headerlink" title="垃圾回收机制："></a>垃圾回收机制：</h2><p>了解垃圾回收机制，我们需要了解垃圾回收器和垃圾回收算法。</p>
+<h3 id="垃圾回收收集器包括：引用计数收集器-Reference-Counting-和跟踪收集器-Tracing-。"><a href="#垃圾回收收集器包括：引用计数收集器-Reference-Counting-和跟踪收集器-Tracing-。" class="headerlink" title="垃圾回收收集器包括：引用计数收集器(Reference Counting)和跟踪收集器(Tracing)。"></a>垃圾回收收集器包括：引用计数收集器(Reference Counting)和跟踪收集器(Tracing)。</h3><ul>
+<li>引用计数收集器(Reference Counting Collector): 堆中每个对象实例都有一个引用计数。当一个对象被创建时，且将该对象实例分配给一个变量，该变量计数设置为1。当任何其它变量被赋值为这个对象的引用时，计数加1（a = b,则b引用的对象实例的计数器+1），但当一个对象实例的某个引用超过了生命周期或者被设置为一个新值时，对象实例的引用计数器减1。任何引用计数器为0的对象实例可以被当作垃圾收集。当一个对象实例被垃圾收集时，它引用的任何对象实例的引用计数器减1。</li>
+<li>跟踪收集器(Tracing Collector): 通过定期对若干根储存对象开始遍历，对整个程序所拥有的储存空间查找与之相关的存储对象和没相关的存储对象进行标记，然后将没相关的存储对象所占物理空间回收。可作为根的包括：虚拟栈中引用的对象，方法区中的类静态属性引用的对象，方法区中的常量引用的对象，本地方法栈中Native 方法引用的对象。</li>
+</ul>
+<h3 id="垃圾回收算法基于标记和回收行为，分为以下多种。"><a href="#垃圾回收算法基于标记和回收行为，分为以下多种。" class="headerlink" title="垃圾回收算法基于标记和回收行为，分为以下多种。"></a>垃圾回收算法基于标记和回收行为，分为以下多种。</h3><ul>
+<li>标记-清除(Mark-sweep): 标记-清除算法采用从根集合进行扫描，对存活的对象对象标记，标记完毕后，再扫描整个空间中未被标记的对象，进行回收，如上图所示。标记-清除算法不需要进行对象的移动，并且仅对不存活的对象进行处理，在存活对象比较多的情况下极为高效，但由于标记-清除算法直接回收不存活的对象，因此会造成内存碎片。</li>
+<li>标记-压缩(Compacting): 标记-整理算法采用标记-清除算法一样的方式进行对象的标记，但在清除时不同，在回收不存活的对象占用的空间后，会将所有的存活对象往左端空闲空间移动，并更新对应的指针。标记-整理算法是在标记-清除算法的基础上，又进行了对象的移动，因此成本更高，但是却解决了内存碎片的问题。</li>
+<li>复制(Copying): 需要程序将所拥有的内存空间分成两个部分。程序运行所需的存储对象先存储在其中一个分区（定义为“分区0”）。同样暂停整个程序的全部运行线程后，进行标记后，回收期间将将保留的存储对象搬运汇集到另一个分区（定义为“分区1”），完成回收，程序在本次回收后将接下来产生的存储对象会存储到“分区1”。在下一次回收时，两个分区的角色对调。</li>
+<li>分代(Generation): 需要程序将所拥有的内存空间分成若干分区，并标记为年轻代空间和年老代空间。程序运行所需的存储对象会先存放在年轻代分区，年轻代分区会较为频密进行较为激进垃圾回收行为，每次回收完成幸存的存储对象内的寿命计数器加一。当年轻代分区存储对象的寿命计数器达到一定阈值或存储对象的占用空间超过一定阈值时，则被移动到年老代空间，年老代空间会较少运行垃圾回收行为。一般情况下，还有永久代的空间，用于涉及程序整个运行生命周期的对象存储，例如运行代码、数据常量等，该空间通常不进行垃圾回收的操作。</li>
+</ul>
+<h3 id="分代算法详解："><a href="#分代算法详解：" class="headerlink" title="分代算法详解："></a>分代算法详解：</h3><ul>
+<li>年轻代(Young Generation)</li>
+</ul>
+<ol>
+<li>所有新生成的对象首先都是放在年轻代的。年轻代的目标就是尽可能快速的收集掉那些生命周期短的对象。</li>
+<li>新生代内存按照8:1:1的比例分为一个eden区和两个survivor(survivor0,survivor1)区。一个Eden区，两个 Survivor区(一般而言)。大部分对象在Eden区中生成。回收时先将eden区存活对象复制到一个survivor0区，然后清空eden区，当这个survivor0区也存放满了时，则将eden区和survivor0区存活对象复制到另一个survivor1区，然后清空eden和这个survivor0区，此时survivor0区是空的，然后将survivor0区和survivor1区交换，即保持survivor1区为空， 如此往复。</li>
+<li>当survivor1区不足以存放 eden和survivor0的存活对象时，就将存活对象直接存放到老年代。若是老年代也满了就会触发一次Full GC，也就是新生代、老年代都进行回收</li>
+<li>新生代发生的GC也叫做Minor GC，MinorGC发生频率比较高(不一定等Eden区满了才触发)</li>
+</ol>
+<ul>
+<li>年老代(Old Generation)</li>
+</ul>
+<ol>
+<li>在年轻代中经历了N次垃圾回收后仍然存活的对象，就会被放到年老代中。因此，可以认为年老代中存放的都是一些生命周期较长的对象。</li>
+<li>内存比新生代也大很多(大概比例是1:2)，当老年代内存满时触发Major GC即Full GC，Full GC发生频率比较低，老年代对象存活时间比较长，存活率标记高。</li>
+</ol>
+<ul>
+<li>持久代(Permanent Generation)</li>
+</ul>
+<ol>
+<li>用于存放静态文件，如Java类、方法等。持久代对垃圾回收没有显著影响，但是有些应用可能动态生成或者调用一些class，例如Hibernate 等，在这种时候需要设置一个比较大的持久代空间来存放这些运行过程中新增的类。</li>
+</ol>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>Java的垃圾回收机制由于JVM的不同和配置的不同会有所区别，但是目前通用的是‘跟踪收集器加分代回收的策略’。而Python主要还是‘引用计数的策略；回收则也是分代回收’。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Garbage-Collection/" rel="tag"># Garbage Collection</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/31/noSQL/" rel="next" title="NoSQL 复习">
+                <i class="fa fa-chevron-left"></i> NoSQL 复习
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Albert Lin" />
+          <p class="site-author-name" itemprop="name">Albert Lin</p>
+           
+              <p class="site-description motion-element" itemprop="description">NULL, VOID, NIL</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#主要参考资料："><span class="nav-number">1.</span> <span class="nav-text">主要参考资料：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java内存分配机制："><span class="nav-number">2.</span> <span class="nav-text">Java内存分配机制：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#垃圾回收机制："><span class="nav-number">3.</span> <span class="nav-text">垃圾回收机制：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#垃圾回收收集器包括：引用计数收集器-Reference-Counting-和跟踪收集器-Tracing-。"><span class="nav-number">3.1.</span> <span class="nav-text">垃圾回收收集器包括：引用计数收集器(Reference Counting)和跟踪收集器(Tracing)。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#垃圾回收算法基于标记和回收行为，分为以下多种。"><span class="nav-number">3.2.</span> <span class="nav-text">垃圾回收算法基于标记和回收行为，分为以下多种。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分代算法详解："><span class="nav-number">3.3.</span> <span class="nav-text">分代算法详解：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他"><span class="nav-number">3.4.</span> <span class="nav-text">其他</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Albert Lin</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
