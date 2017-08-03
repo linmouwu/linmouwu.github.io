@@ -74,7 +74,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="MySQL,Database," />
+  <meta name="keywords" content="Machine Learning; Standford University," />
 
 
 
@@ -90,17 +90,17 @@
 
 
 
-<meta name="description" content="Petuum已经跪了。第三面面的是如何从Machine A的disk上快速的读写到Machine B的disk上。经验不足，没能很灵活的给出解答。跪得理所当然。罢了罢了，不是我的强求不来，整装待发为了朝日！不过在准备Petuum的backend engineer的面试的过程中，还是回顾了不少知识，正好分别整理一下。这一篇先讲讲MySQL。 主要参考资料：MySQL索引原理及慢查询优化MySQL索引">
-<meta name="keywords" content="MySQL,Database">
+<meta name="description" content="上一篇post是6月9号的……我是得有多懒……嘛，在我的以后的人生自传里，这两个月的时光也就可能总结成一句话吧：Yuki和雅迪有幸入了Petuum，既替她们开心，也觉得自己与Petuum、与匹兹堡的故事有待继续；在正式上班前各路奔波，回国，飞加州，回匹兹堡，开车到VA，一路兴奋与劳顿，有得有失。生命在于折腾，事情还没完呢。哎……言归正传。因为工作需要打算恶补machine learning和Pyt">
+<meta name="keywords" content="Machine Learning; Standford University">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MySQL复习">
-<meta property="og:url" content="http://linmouwu.com/2017/05/19/mySQL/index.html">
+<meta property="og:title" content="mlOne">
+<meta property="og:url" content="http://linmouwu.com/2017/08/02/mlOne/index.html">
 <meta property="og:site_name" content="二进制人生">
-<meta property="og:description" content="Petuum已经跪了。第三面面的是如何从Machine A的disk上快速的读写到Machine B的disk上。经验不足，没能很灵活的给出解答。跪得理所当然。罢了罢了，不是我的强求不来，整装待发为了朝日！不过在准备Petuum的backend engineer的面试的过程中，还是回顾了不少知识，正好分别整理一下。这一篇先讲讲MySQL。 主要参考资料：MySQL索引原理及慢查询优化MySQL索引">
-<meta property="og:updated_time" content="2017-05-19T14:38:18.000Z">
+<meta property="og:description" content="上一篇post是6月9号的……我是得有多懒……嘛，在我的以后的人生自传里，这两个月的时光也就可能总结成一句话吧：Yuki和雅迪有幸入了Petuum，既替她们开心，也觉得自己与Petuum、与匹兹堡的故事有待继续；在正式上班前各路奔波，回国，飞加州，回匹兹堡，开车到VA，一路兴奋与劳顿，有得有失。生命在于折腾，事情还没完呢。哎……言归正传。因为工作需要打算恶补machine learning和Pyt">
+<meta property="og:updated_time" content="2017-08-03T00:45:34.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MySQL复习">
-<meta name="twitter:description" content="Petuum已经跪了。第三面面的是如何从Machine A的disk上快速的读写到Machine B的disk上。经验不足，没能很灵活的给出解答。跪得理所当然。罢了罢了，不是我的强求不来，整装待发为了朝日！不过在准备Petuum的backend engineer的面试的过程中，还是回顾了不少知识，正好分别整理一下。这一篇先讲讲MySQL。 主要参考资料：MySQL索引原理及慢查询优化MySQL索引">
+<meta name="twitter:title" content="mlOne">
+<meta name="twitter:description" content="上一篇post是6月9号的……我是得有多懒……嘛，在我的以后的人生自传里，这两个月的时光也就可能总结成一句话吧：Yuki和雅迪有幸入了Petuum，既替她们开心，也觉得自己与Petuum、与匹兹堡的故事有待继续；在正式上班前各路奔波，回国，飞加州，回匹兹堡，开车到VA，一路兴奋与劳顿，有得有失。生命在于折腾，事情还没完呢。哎……言归正传。因为工作需要打算恶补machine learning和Pyt">
 
 
 
@@ -128,13 +128,13 @@
 
 
 
-  <link rel="canonical" href="http://linmouwu.com/2017/05/19/mySQL/"/>
+  <link rel="canonical" href="http://linmouwu.com/2017/08/02/mlOne/"/>
 
 
 
 
 
-  <title>MySQL复习 | 二进制人生</title>
+  <title>mlOne | 二进制人生</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -283,7 +283,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://linmouwu.com/2017/05/19/mySQL/">
+    <link itemprop="mainEntityOfPage" href="http://linmouwu.com/2017/08/02/mlOne/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Albert Lin">
@@ -304,7 +304,7 @@
             
             
               
-                MySQL复习
+                mlOne
               
             
           </h1>
@@ -319,8 +319,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-19T09:29:24-04:00">
-                05/19/2017
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-02T19:29:14-04:00">
+                08/02/2017
               </time>
             
 
@@ -342,8 +342,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/计算机基础/" itemprop="url" rel="index">
-                    <span itemprop="name">计算机基础</span>
+                  <a href="/categories/Coursera/" itemprop="url" rel="index">
+                    <span itemprop="name">Coursera</span>
                   </a>
                 </span>
 
@@ -376,21 +376,32 @@
       
 
       
-        <p>Petuum已经跪了。第三面面的是如何从Machine A的disk上快速的读写到Machine B的disk上。经验不足，没能很灵活的给出解答。跪得理所当然。罢了罢了，不是我的强求不来，整装待发为了朝日！<br>不过在准备Petuum的backend engineer的面试的过程中，还是回顾了不少知识，正好分别整理一下。这一篇先讲讲MySQL。</p>
-<h2 id="主要参考资料："><a href="#主要参考资料：" class="headerlink" title="主要参考资料："></a>主要参考资料：</h2><p><a href="http://tech.meituan.com/mysql-index.html" target="_blank" rel="external">MySQL索引原理及慢查询优化</a><br><a href="http://www.jianshu.com/p/2b541c028157" target="_blank" rel="external">MySQL索引使用</a><br><a href="http://www.codeceo.com/article/mysql-index-2.html" target="_blank" rel="external">MySQL索引详解</a><br><a href="http://blog.codinglabs.org/articles/theory-of-mysql-index.html" target="_blank" rel="external">MySQL索引背后的数据结构及算法原理</a><br><a href="https://www.pureweber.com/article/myisam-vs-innodb/" target="_blank" rel="external">MySQL存储引擎MyISAM与InnoDB的优劣</a><br><a href="http://c.biancheng.net/cpp/html/1465.html" target="_blank" rel="external">MySQL各种存储引擎的特性以及如何选择存储引擎</a></p>
-<h2 id="最常见的存储引擎-InnoDB-amp-MyISAM："><a href="#最常见的存储引擎-InnoDB-amp-MyISAM：" class="headerlink" title="最常见的存储引擎: InnoDB &amp; MyISAM："></a>最常见的存储引擎: InnoDB &amp; MyISAM：</h2><p>InnoDB: 支持transactional，适合写和更改，但是不适合index；提供了具有提交、回滚和崩溃恢复能力的事务安全。但是对比Myisam的存储引擎，InnoDB写的处理效率差一些并且会占用更多的磁盘空间以保留数据和索引。</p>
-<p>Myisam: 默认引擎，非事务，不支持外键，适合快速查找；每个MyISAM在磁盘上存储成三个文件。文件名都和表名相同，扩展名分别是.frm - 存储表定义，.MYD(MYData) - 存储数据，.MYI(MYIndex) - 存储索引)。数据文件和索引文件可以放置在不同的目录，平均分布io，获得更快的速度。   </p>
-<h2 id="其他存储引擎："><a href="#其他存储引擎：" class="headerlink" title="其他存储引擎："></a>其他存储引擎：</h2><p>Memory: 使用MySQL Memory存储引擎的出发点是速度。存储介质是系统内存。虽然在内存中存储表数据确实会提供很高的性能，但当mysqld守护进程崩溃时，所有的Memory数据都会丢失。</p>
-<p>Merge: Merge表是几个相同MyISAM表的聚合器；Merge表中并没有数据，对Merge类型的表可以进行查询、更新、删除操作，这些操作实际上是对内部的MyISAM表进行操作。</p>
-<p>CSV: 基于 CSV 格式文件存储数据。</p>
-<p>Archive: Archive是归档的意思，在归档之后很多的高级功能就不再支持了，仅仅支持最基本的插入和查询两种功能。</p>
-<h2 id="索引index："><a href="#索引index：" class="headerlink" title="索引index："></a>索引index：</h2><p>数据结构：B+树；Myisam引擎的叶节点的data域仅仅存放的是数据记录的地址，这个地址对应于disk上的地址；而InnoDB中，数据文件本身就是索引文件，树的叶节点data域保存了完整的数据记录。在InnoDB的B+树上，索引的key是数据表的主键。另外，对于InnoDB的所有辅助索引都引用主键作为data域。</p>
-<p>Hash索引：Memory引擎，根据hash进行单一查询；</p>
-<p>Cluster index：将磁盘上的数据重新根据值进行聚集排列；</p>
-<p>组合索引：建立索引在多个column上，但是查找的时候只能从左往右看索引键；</p>
-<h2 id="MySQL语句："><a href="#MySQL语句：" class="headerlink" title="MySQL语句："></a>MySQL语句：</h2><p>一句话cheat sheet:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">SELECT Points, COUNT(*) AS Cnt</div><div class="line">       FROM Students S,Assignments A</div><div class="line">       WHERE S.StudentID=A.StudentID AND</div><div class="line">       A.AssignmentID=12</div><div class="line">       GROUP BY Points</div><div class="line">       HAVING Points &gt; 10</div><div class="line">       ORDER BY Cnt, Points DESC;</div></pre></td></tr></table></figure></p>
-<p>另外，MySQL的其他关键字包括：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">show - 查看数据库或者表；</div><div class="line">describe - 描述数据库或者表；</div><div class="line">explain － 详细查看SQL语句执行情况；</div></pre></td></tr></table></figure>
+        <p>上一篇post是6月9号的……我是得有多懒……嘛，在我的以后的人生自传里，这两个月的时光也就可能总结成一句话吧：Yuki和雅迪有幸入了Petuum，既替她们开心，也觉得自己与Petuum、与匹兹堡的故事有待继续；在正式上班前各路奔波，回国，飞加州，回匹兹堡，开车到VA，一路兴奋与劳顿，有得有失。生命在于折腾，事情还没完呢。<br>哎……言归正传。因为工作需要打算恶补machine learning和Python了。（躲得了初一躲不了初二啊摔）所以就去coursera上重新注册了个Standard的ML课，传说中的Andrew大神授课，还花重金买了certification！希望能……坚持下来吧！</p>
+<h2 id="小目标：每个week做一个总结！嗯！"><a href="#小目标：每个week做一个总结！嗯！" class="headerlink" title="小目标：每个week做一个总结！嗯！"></a>小目标：每个week做一个总结！嗯！</h2><h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>主要介绍了课程本身和几个ML常见的定义。总（fan）结（yi）如下：</p>
+<ul>
+<li>机器学习（Machine Learning）：机器学习是研究“如何让一个机器或者程序在自发学习而无人为干涉的前提下，给出实际问题一个可行答案”的学科。按照Tom Mitchell的定义，可具体化为：一个计算机程序在经验E中学习，任务T是学习所要的结果，而性能P则是学习过程和结果的度量。机器学习的分支与应用包括：人工智能，深度学习，数据挖掘，语音识别，图像识别等等。</li>
+<li>监督学习（Supervised Learning）：在给定已有数据集的情况下，找到未知量与已知参数之间关系的机器学习范畴。已有数据集称为“训练集”。监督学习依照学习目的的不同，大致可以分为“回归（regression）”和“分类（classification）”两种问题。</li>
+<li>非监督学习（Unsupervised Learning）：在没有已知数据集的情况下，找到数据集本身特性的机器学习范畴。非监督学习不含训练集，因此其目的主要是发现数据集本身的特性、或数据直接本身所具有的关系。主要应用包括“聚类（clustering）”等问题。</li>
+</ul>
+<h2 id="模型和成本函数"><a href="#模型和成本函数" class="headerlink" title="模型和成本函数"></a>模型和成本函数</h2><p>主要从宏观上介绍机器学习的实际过程：</p>
+<ul>
+<li>模型：监督学习的模型即学习的结果，用来表示预测变量（标签label）和给定已知变量之间的关系。预测变量实际值为y，已知变量为xi，模型本身为h，则我们需要找到的关系就是找到最理想的h，是的满足h（xi）（h（xi）表示预测变量的预测值）与实际的y之间的差值最小；差值越小，说明预测越准确。</li>
+<li>成本函数（cost function）：用来表示预测变量的预测值和实际值之间偏差的函数，即模型h的准确程度的函数。常见的指标是J＝“预测值与实际值的差的平方的均值”。即：J＝1/2*m＊sum［（h（xi）－y）^2］。这里的m表示测试数据集的大小；除以2是为了梯度下降算法的计算方便。另外，拟合程度达到完美时，J＝0。</li>
+<li>轮廓图（contour plot）：坐标轴为二维，以轮廓线作为第三维的图像；同一轮廓线上的值相同，轮廓线越密集，斜率越大。轮廓图可以用于寻找拟合曲线最好的点。对于成本函数而言，轮廓图的最低点就是成本函数的最小点。</li>
+</ul>
+<h2 id="梯度下降"><a href="#梯度下降" class="headerlink" title="梯度下降"></a>梯度下降</h2><p>主要介绍梯度下降算法：</p>
+<ul>
+<li>梯度下降（gradient descent）：这是一种不断逼近曲线或者曲面极小值的方法。其做法是在每一步的时候，不断更新自变量，更新的幅度为当前的导数（derivative）乘以当前的因变量，直到满足收敛条件为止。具体的公式为：thj：＝thj－arf＊derivative（J）。其中，derivative是J对应于第j个自变量的偏导。而且应该注意，所有的thj都同时改变而不是依次改变。</li>
+<li>梯度下降之所以能成功的一个原因是：负号和偏导的存在，使得当前的变量的点会往极值点移动：例如thj&lt;peek，则偏导为负，那么thj增加；反之亦然。而arf的存在用来控制变化的步长。当arf过大，thj变化过于明显，可能出现thj在极值点周围来回跳动的情况，甚至可能导致thj无法收敛；当arf过小，则步长太短，收敛速度过于缓慢。</li>
+</ul>
+<h2 id="矩阵运算回顾："><a href="#矩阵运算回顾：" class="headerlink" title="矩阵运算回顾："></a>矩阵运算回顾：</h2><p>主要回顾了常见的矩阵运算：</p>
+<ul>
+<li>加法：矩阵的行列数相同，直接加减；</li>
+<li>乘法：(m<em>n) </em> (n<em>p) = (m</em>p)，最后行数和第一个矩阵相同，列数和第二个矩阵相同，所以第一个矩阵的行数越少，第二个矩阵的列数越少，越节约空间；</li>
+<li>向量（Vector）：单一一列，多行；</li>
+<li>矩阵的逆（inverse）：A*A^-1=I；</li>
+<li>矩阵的转置（transpose）：沿着左上－右下斜对角线对称。</li>
+</ul>
 
       
     </div>
@@ -420,9 +431,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/MySQL/" rel="tag"># MySQL</a>
-          
-            <a href="/tags/Database/" rel="tag"># Database</a>
+            <a href="/tags/Machine-Learning-Standford-University/" rel="tag"># Machine Learning; Standford University</a>
           
         </div>
       
@@ -435,8 +444,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/05/05/linuxCommand/" rel="next" title="常用Linux命令">
-                <i class="fa fa-chevron-left"></i> 常用Linux命令
+              <a href="/2017/06/09/garbageCollection/" rel="next" title="常见GC(垃圾回收)机制">
+                <i class="fa fa-chevron-left"></i> 常见GC(垃圾回收)机制
               </a>
             
           </div>
@@ -444,10 +453,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/05/31/noSQL/" rel="prev" title="NoSQL 复习">
-                NoSQL 复习 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -576,7 +581,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#主要参考资料："><span class="nav-number">1.</span> <span class="nav-text">主要参考资料：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最常见的存储引擎-InnoDB-amp-MyISAM："><span class="nav-number">2.</span> <span class="nav-text">最常见的存储引擎: InnoDB & MyISAM：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他存储引擎："><span class="nav-number">3.</span> <span class="nav-text">其他存储引擎：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#索引index："><span class="nav-number">4.</span> <span class="nav-text">索引index：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL语句："><span class="nav-number">5.</span> <span class="nav-text">MySQL语句：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#小目标：每个week做一个总结！嗯！"><span class="nav-number">1.</span> <span class="nav-text">小目标：每个week做一个总结！嗯！</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">2.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型和成本函数"><span class="nav-number">3.</span> <span class="nav-text">模型和成本函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#梯度下降"><span class="nav-number">4.</span> <span class="nav-text">梯度下降</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵运算回顾："><span class="nav-number">5.</span> <span class="nav-text">矩阵运算回顾：</span></a></li></ol></div>
             
 
           </div>
