@@ -74,7 +74,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Software Engineer," />
+  <meta name="keywords" content="Machine Learning,Standford University," />
 
 
 
@@ -90,17 +90,17 @@
 
 
 
-<meta name="description" content="系统设计主要考察一个人从宏观角度进行问题分析的能力。重点在于如何准确的了解客户的需求，并根据自己已有的知识搭建一个可行的解决方案框架。 主要步骤 收集需求并分析，注意大方面到小细节，从简易到复杂，从用户期待到产品实现 作出合理假设，例如假设用户特征，假设用户分布 画出框架图，流程可以从前往后，或者从后往前；尽量按照一个方向走，不容易乱； 识别关键点，例如瓶颈，容错等等 重新设计  Scalabil">
-<meta name="keywords" content="Software Engineer">
+<meta name="description" content="哈哈哈我知道这一章拖的有点久。支持向量机SVM当时看的时候根本没看明白，只知道是一个逻辑回归模型的变形。现在已经第九周了，第九周完了以后我是上一门新课还是找一些别的事情做……有待商榷（自己跟自己商榷）。 嗯，再说吧，先把现在能做的总结做好了。 逻辑回归回顾对于逻辑回归，我们想要达到h(x) = 1， 则我们要有theta’  X &amp;gt;&amp;gt; 0; 相反依然。在这个基础上，我们重新定义我们对于">
+<meta name="keywords" content="Machine Learning,Standford University">
 <meta property="og:type" content="article">
-<meta property="og:title" content="系统设计 初学">
-<meta property="og:url" content="http://linmouwu.com/2017/04/25/systemDesign/index.html">
+<meta property="og:title" content="mlSeven">
+<meta property="og:url" content="http://linmouwu.com/2017/09/22/mlSeven/index.html">
 <meta property="og:site_name" content="二进制人生">
-<meta property="og:description" content="系统设计主要考察一个人从宏观角度进行问题分析的能力。重点在于如何准确的了解客户的需求，并根据自己已有的知识搭建一个可行的解决方案框架。 主要步骤 收集需求并分析，注意大方面到小细节，从简易到复杂，从用户期待到产品实现 作出合理假设，例如假设用户特征，假设用户分布 画出框架图，流程可以从前往后，或者从后往前；尽量按照一个方向走，不容易乱； 识别关键点，例如瓶颈，容错等等 重新设计  Scalabil">
-<meta property="og:updated_time" content="2017-04-26T12:56:00.000Z">
+<meta property="og:description" content="哈哈哈我知道这一章拖的有点久。支持向量机SVM当时看的时候根本没看明白，只知道是一个逻辑回归模型的变形。现在已经第九周了，第九周完了以后我是上一门新课还是找一些别的事情做……有待商榷（自己跟自己商榷）。 嗯，再说吧，先把现在能做的总结做好了。 逻辑回归回顾对于逻辑回归，我们想要达到h(x) = 1， 则我们要有theta’  X &amp;gt;&amp;gt; 0; 相反依然。在这个基础上，我们重新定义我们对于">
+<meta property="og:updated_time" content="2017-09-23T01:47:21.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="系统设计 初学">
-<meta name="twitter:description" content="系统设计主要考察一个人从宏观角度进行问题分析的能力。重点在于如何准确的了解客户的需求，并根据自己已有的知识搭建一个可行的解决方案框架。 主要步骤 收集需求并分析，注意大方面到小细节，从简易到复杂，从用户期待到产品实现 作出合理假设，例如假设用户特征，假设用户分布 画出框架图，流程可以从前往后，或者从后往前；尽量按照一个方向走，不容易乱； 识别关键点，例如瓶颈，容错等等 重新设计  Scalabil">
+<meta name="twitter:title" content="mlSeven">
+<meta name="twitter:description" content="哈哈哈我知道这一章拖的有点久。支持向量机SVM当时看的时候根本没看明白，只知道是一个逻辑回归模型的变形。现在已经第九周了，第九周完了以后我是上一门新课还是找一些别的事情做……有待商榷（自己跟自己商榷）。 嗯，再说吧，先把现在能做的总结做好了。 逻辑回归回顾对于逻辑回归，我们想要达到h(x) = 1， 则我们要有theta’  X &amp;gt;&amp;gt; 0; 相反依然。在这个基础上，我们重新定义我们对于">
 
 
 
@@ -128,13 +128,13 @@
 
 
 
-  <link rel="canonical" href="http://linmouwu.com/2017/04/25/systemDesign/"/>
+  <link rel="canonical" href="http://linmouwu.com/2017/09/22/mlSeven/"/>
 
 
 
 
 
-  <title>系统设计 初学 | 二进制人生</title>
+  <title>mlSeven | 二进制人生</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -283,7 +283,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://linmouwu.com/2017/04/25/systemDesign/">
+    <link itemprop="mainEntityOfPage" href="http://linmouwu.com/2017/09/22/mlSeven/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Albert Lin">
@@ -304,7 +304,7 @@
             
             
               
-                系统设计 初学
+                mlSeven
               
             
           </h1>
@@ -319,8 +319,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-25T20:16:24-04:00">
-                04/25/2017
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-22T20:51:19-04:00">
+                09/22/2017
               </time>
             
 
@@ -342,8 +342,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/理论学习/" itemprop="url" rel="index">
-                    <span itemprop="name">理论学习</span>
+                  <a href="/categories/Coursera/" itemprop="url" rel="index">
+                    <span itemprop="name">Coursera</span>
                   </a>
                 </span>
 
@@ -376,24 +376,39 @@
       
 
       
-        <p>系统设计主要考察一个人从宏观角度进行问题分析的能力。重点在于如何准确的了解客户的需求，并根据自己已有的知识搭建一个可行的解决方案框架。</p>
-<h2 id="主要步骤"><a href="#主要步骤" class="headerlink" title="主要步骤"></a>主要步骤</h2><ul>
-<li>收集需求并分析，注意大方面到小细节，从简易到复杂，从用户期待到产品实现</li>
-<li>作出合理假设，例如假设用户特征，假设用户分布</li>
-<li>画出框架图，流程可以从前往后，或者从后往前；尽量按照一个方向走，不容易乱；</li>
-<li>识别关键点，例如瓶颈，容错等等</li>
-<li>重新设计</li>
+        <p>哈哈哈我知道这一章拖的有点久。支持向量机SVM当时看的时候根本没看明白，只知道是一个逻辑回归模型的变形。现在已经第九周了，第九周完了以后我是上一门新课还是找一些别的事情做……有待商榷（自己跟自己商榷）。</p>
+<p>嗯，再说吧，先把现在能做的总结做好了。</p>
+<h1 id="逻辑回归回顾"><a href="#逻辑回归回顾" class="headerlink" title="逻辑回归回顾"></a>逻辑回归回顾</h1><p>对于逻辑回归，我们想要达到h(x) = 1， 则我们要有theta’ <em> X &gt;&gt; 0; 相反依然。在这个基础上，我们重新定义我们对于单个实例的cost function，得到：<br>Ji = -y </em> log (1/(1 + e^(-theta’ <em> x))) - (1 - y) </em> log(1/(1 + e^(-theta’ <em> x)))<br>则总的cost function为：<br>J ＝ 1/m </em> sumOfJi + lambda/ (2<em>m) </em> sumOfThetaSquare</p>
+<h1 id="支持向量机SVM"><a href="#支持向量机SVM" class="headerlink" title="支持向量机SVM"></a>支持向量机SVM</h1><ul>
+<li>在新的逻辑回归方程的基础上，我们用：cost(theta’ * x) 替换 log函数，并提取出负号，用C ＝ 1/lambda 替换现有的常熟，即可得到SVM的通用模式;</li>
+<li>SVM的目标函数变成：min C <em> sumOf(y </em> cost(theta <em> x) + (1 - y) </em> cost(theta <em> x)) + 1/2 </em> sumOfThetaSquare;</li>
+<li>我们把theta’ <em> x的限制条件加强，变成 h(x) = 1, 则theta’ </em> x &gt;&gt; 1, 反之小于－1;</li>
+<li>对于SVM而言，我们要找到对应的decision boundary，使得不同class之间的margin达到最大化;</li>
 </ul>
-<h2 id="Scalability"><a href="#Scalability" class="headerlink" title="Scalability"></a>Scalability</h2><ul>
-<li>Cache: 将大量访问的请求进行cache，使用工具包括：Memcached或者Redis，数据库的index，LinkedHashMap实现的LRU，CDN等；</li>
-<li>Queue: 消息队列，用于不同进程／线程之间通信，降低偶合度，顺序处理，提高可靠性和可扩展性，使用工具包括：Kafka等；</li>
-<li>Asynchronized: 异步操作，非阻塞的处理请求，接收新请求之后并不阻塞线程，而是放入另一线程中，直到完成并进行回调，框架包括：Netty；</li>
-<li>Load Balancer: 负载均衡，将请求合理分配到不同机器进行处理，可使用Round Robbin或自己定义的算法，工具包括：AWS ELB；</li>
-<li>Parallel: 并行计算，例如MapReduce，工作包括Hadoop， Spark等；</li>
-<li>Replication: 复制数据副本，提高可靠性，但是需要考虑一致性问题，可以通过版本控制，锁，一致性检查等保证一致；</li>
-<li>Sharding: 数据分片，包括Vertical和Horizontal两种，可以根据Hash值分割，可以结合replication一起使用；</li>
+<h1 id="Margin-最大化的数学根据"><a href="#Margin-最大化的数学根据" class="headerlink" title="Margin 最大化的数学根据"></a>Margin 最大化的数学根据</h1><ul>
+<li>假设p是向量v在向量u上的投影的长度，那么 u’ <em> v = p </em> || u || = u1 <em> v1 + u2 </em> v2;</li>
+<li>对于theta’ <em> x, 我们假设p是x在theta方向上的投影，则theta’ </em> x = p * || theta ||;</li>
+<li>所以，我们要使得p * || theta || &gt;= 1, 则需要找到一个decision boundary，使得这个decision boundary的垂直线，也就是theta的向量方向，尽可能跟x的方向一致;</li>
+<li>当这个boundary满足margin最大，则与其垂直的theta向量与对于的x向量之间的夹角最小，cost function最小;</li>
 </ul>
-<p>除了上述主要特性之外，还需要考虑的matrix：<br>bandwidth，throughput，latency，failure，availability，security，SQL与NoSQL的结合等。</p>
+<h1 id="内核"><a href="#内核" class="headerlink" title="内核"></a>内核</h1><p>我们可以给支持向量机定义内核，内核决定了支持向量机decision boundary的存在形式；</p>
+<ul>
+<li>我们用内核f替换x，从而实现非线性boundary的训练和计算；</li>
+<li>相似性原理：f = similarity(x, l) = exp(- || x - l ||^2 / 2 * sigma^2)；</li>
+<li>对于每一个（xi, ji）, 我们令fi = (xi 与所有xi)的相似性组成的向量，然后用这个fi取代现有的xi；其中，存在(xi, xi)的相似度的特例，结果为最大值1；</li>
+<li>在给定内核的基础上我们在进行训练，得到对应的theta值就是垂直于boundary的向量值；</li>
+</ul>
+<h1 id="SVM参数"><a href="#SVM参数" class="headerlink" title="SVM参数"></a>SVM参数</h1><ul>
+<li>C: large C, low bias, high variance; small C, high bias, low variance;</li>
+<li>sigma^2: large sigma^2, f more smooth, high bias, low variance, small sigma^2, f more sharp, low bias, high variance;</li>
+</ul>
+<h1 id="其他内核"><a href="#其他内核" class="headerlink" title="其他内核"></a>其他内核</h1><ul>
+<li>多项式内核：用关于xi的多项式替换x；</li>
+<li>字符串内核，chi－square内核等等。</li>
+</ul>
+<h1 id="多类别SVM预测"><a href="#多类别SVM预测" class="headerlink" title="多类别SVM预测"></a>多类别SVM预测</h1><ul>
+<li>one-vs-all方法，计算所有的可能的theta，取其中满足cost function最小的，即theta’ * x最大的那个。</li>
+</ul>
 
       
     </div>
@@ -423,7 +438,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Software-Engineer/" rel="tag"># Software Engineer</a>
+            <a href="/tags/Machine-Learning/" rel="tag"># Machine Learning</a>
+          
+            <a href="/tags/Standford-University/" rel="tag"># Standford University</a>
           
         </div>
       
@@ -436,8 +453,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/04/24/spark/" rel="next" title="PySpark 入门">
-                <i class="fa fa-chevron-left"></i> PySpark 入门
+              <a href="/2017/09/11/mlSix/" rel="next" title="mlSix">
+                <i class="fa fa-chevron-left"></i> mlSix
               </a>
             
           </div>
@@ -445,10 +462,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/04/26/buySellStock/" rel="prev" title="Best Time To Buy And Sell Stock">
-                Best Time To Buy And Sell Stock <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -577,7 +590,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#主要步骤"><span class="nav-number">1.</span> <span class="nav-text">主要步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Scalability"><span class="nav-number">2.</span> <span class="nav-text">Scalability</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#逻辑回归回顾"><span class="nav-number">1.</span> <span class="nav-text">逻辑回归回顾</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#支持向量机SVM"><span class="nav-number">2.</span> <span class="nav-text">支持向量机SVM</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Margin-最大化的数学根据"><span class="nav-number">3.</span> <span class="nav-text">Margin 最大化的数学根据</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#内核"><span class="nav-number">4.</span> <span class="nav-text">内核</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SVM参数"><span class="nav-number">5.</span> <span class="nav-text">SVM参数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#其他内核"><span class="nav-number">6.</span> <span class="nav-text">其他内核</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#多类别SVM预测"><span class="nav-number">7.</span> <span class="nav-text">多类别SVM预测</span></a></li></ol></div>
             
 
           </div>
