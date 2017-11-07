@@ -74,7 +74,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Machine Learning,Standford University," />
+  <meta name="keywords" content="Data Engineer,Cloud Computing," />
 
 
 
@@ -90,17 +90,17 @@
 
 
 
-<meta name="description" content="Coursera第三周纪实。居然能坚持到第三周，哈哈哈佩服自己。本周没什么特别的事情，感觉能跟认识的同学一起工作，压力会小一些，毕竟有问题可以实时和小雨讨论。另外，好像读博啊。但是不知道怎么开始。Anyway，先把coursera的课上完，再回头斟酌斟酌吧。 切入正题。 分类的定义分类，即clasification，是根据观测值推算预测结果所属类型的过程。分类问题与回归问题很类似，均属于监督学习问">
-<meta name="keywords" content="Machine Learning,Standford University">
+<meta name="description" content="对于我这样的懒人而言，梳理知识点真真算不得一件快乐的事情。特别是当知识点杂乱无序，而需要我自己抽丝剥茧般理出个所以然时，更是让人头疼。上完了Coursera上Machine Learning的课程之后，选修了UIUC的Cloud Computing的课程。这是一个specilization，也就是由多门课组成。估计上完这个系列我就该累死了，哈哈哈哈哈。我一定是脑子哪里长洞了。 简而言之，这一系列课">
+<meta name="keywords" content="Data Engineer,Cloud Computing">
 <meta property="og:type" content="article">
-<meta property="og:title" content="mlThree">
-<meta property="og:url" content="http://linmouwu.com/2017/08/20/mlThree/index.html">
+<meta property="og:title" content="Cloud Computing Part 1">
+<meta property="og:url" content="http://linmouwu.com/2017/11/06/ccPartOne/index.html">
 <meta property="og:site_name" content="二进制人生">
-<meta property="og:description" content="Coursera第三周纪实。居然能坚持到第三周，哈哈哈佩服自己。本周没什么特别的事情，感觉能跟认识的同学一起工作，压力会小一些，毕竟有问题可以实时和小雨讨论。另外，好像读博啊。但是不知道怎么开始。Anyway，先把coursera的课上完，再回头斟酌斟酌吧。 切入正题。 分类的定义分类，即clasification，是根据观测值推算预测结果所属类型的过程。分类问题与回归问题很类似，均属于监督学习问">
-<meta property="og:updated_time" content="2017-08-20T14:25:03.000Z">
+<meta property="og:description" content="对于我这样的懒人而言，梳理知识点真真算不得一件快乐的事情。特别是当知识点杂乱无序，而需要我自己抽丝剥茧般理出个所以然时，更是让人头疼。上完了Coursera上Machine Learning的课程之后，选修了UIUC的Cloud Computing的课程。这是一个specilization，也就是由多门课组成。估计上完这个系列我就该累死了，哈哈哈哈哈。我一定是脑子哪里长洞了。 简而言之，这一系列课">
+<meta property="og:updated_time" content="2017-11-07T03:46:11.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="mlThree">
-<meta name="twitter:description" content="Coursera第三周纪实。居然能坚持到第三周，哈哈哈佩服自己。本周没什么特别的事情，感觉能跟认识的同学一起工作，压力会小一些，毕竟有问题可以实时和小雨讨论。另外，好像读博啊。但是不知道怎么开始。Anyway，先把coursera的课上完，再回头斟酌斟酌吧。 切入正题。 分类的定义分类，即clasification，是根据观测值推算预测结果所属类型的过程。分类问题与回归问题很类似，均属于监督学习问">
+<meta name="twitter:title" content="Cloud Computing Part 1">
+<meta name="twitter:description" content="对于我这样的懒人而言，梳理知识点真真算不得一件快乐的事情。特别是当知识点杂乱无序，而需要我自己抽丝剥茧般理出个所以然时，更是让人头疼。上完了Coursera上Machine Learning的课程之后，选修了UIUC的Cloud Computing的课程。这是一个specilization，也就是由多门课组成。估计上完这个系列我就该累死了，哈哈哈哈哈。我一定是脑子哪里长洞了。 简而言之，这一系列课">
 
 
 
@@ -128,13 +128,13 @@
 
 
 
-  <link rel="canonical" href="http://linmouwu.com/2017/08/20/mlThree/"/>
+  <link rel="canonical" href="http://linmouwu.com/2017/11/06/ccPartOne/"/>
 
 
 
 
 
-  <title>mlThree | 二进制人生</title>
+  <title>Cloud Computing Part 1 | 二进制人生</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -283,7 +283,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://linmouwu.com/2017/08/20/mlThree/">
+    <link itemprop="mainEntityOfPage" href="http://linmouwu.com/2017/11/06/ccPartOne/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Albert Lin">
@@ -304,7 +304,7 @@
             
             
               
-                mlThree
+                Cloud Computing Part 1
               
             
           </h1>
@@ -319,8 +319,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-20T00:22:12-04:00">
-                08/20/2017
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-06T21:25:11-05:00">
+                11/06/2017
               </time>
             
 
@@ -376,47 +376,34 @@
       
 
       
-        <p>Coursera第三周纪实。居然能坚持到第三周，哈哈哈佩服自己。本周没什么特别的事情，感觉能跟认识的同学一起工作，压力会小一些，毕竟有问题可以实时和小雨讨论。另外，好像读博啊。但是不知道怎么开始。Anyway，先把coursera的课上完，再回头斟酌斟酌吧。</p>
-<p>切入正题。</p>
-<h1 id="分类的定义"><a href="#分类的定义" class="headerlink" title="分类的定义"></a>分类的定义</h1><p>分类，即clasification，是根据观测值推算预测结果所属类型的过程。分类问题与回归问题很类似，均属于监督学习问题。区别在于，回归问题预测的是连续数值，而分类问题预测的是离散的结果。根据分类结果的类别数量，我们可以把问题定义为：0-1分类，多级分类等。</p>
-<h1 id="逻辑回归方程（Sigmoid-Function）"><a href="#逻辑回归方程（Sigmoid-Function）" class="headerlink" title="逻辑回归方程（Sigmoid Function）"></a>逻辑回归方程（Sigmoid Function）</h1><p>逻辑回归方程，Logistic Function，也叫Sigmoid Function，是根据训练集所构建起来的预测模型。具体形式大致为：</p>
-<ul>
-<li>h_theta(x) = g(theta’ * x)</li>
-<li>z = theta’ * x</li>
-<li>g(z) = 1 / (1 + e^-z)<br>这里的h表示的是输出为1的可能性，0 &lt;= h &lt;= 1，sigmoid function g(z) 的值域也是0到1。</li>
+        <p>对于我这样的懒人而言，梳理知识点真真算不得一件快乐的事情。特别是当知识点杂乱无序，而需要我自己抽丝剥茧般理出个所以然时，更是让人头疼。上完了Coursera上Machine Learning的课程之后，选修了UIUC的Cloud Computing的课程。这是一个specilization，也就是由多门课组成。估计上完这个系列我就该累死了，哈哈哈哈哈。我一定是脑子哪里长洞了。</p>
+<p>简而言之，这一系列课程的前两节，主要讲的是云计算的基础知识。虽然在CMU的时候上过CC的课，但是一来早就忘光了，二来两所学校的知识体系也不完全一样，所以还是学了不少新概念。当然这些概念能掌握多牢固能记得多久，就看自己的造化了。废话不多说，开始整理第一部分的内容把。</p>
+<p>第一部分分5周，分别对应下文的每个section。因为这个课程知识基础知识入门，且因为我懒，所以目前都是在梳理理论知识而已。以后有空，想起来要翻翻看的时候，再回头来看吧。</p>
+<h2 id="Week-One"><a href="#Week-One" class="headerlink" title="Week One"></a>Week One</h2><h3 id="Intro-to-Cloud"><a href="#Intro-to-Cloud" class="headerlink" title="Intro to Cloud"></a>Intro to Cloud</h3><ul>
+<li>云 ＝ 大量存储空间 ＋ 计算核心；</li>
+<li>Cloud computing 的四个特征：Massive scale， On-demand process， Data-intensive Nature， Cloud computing programming paradigms；</li>
+<li>WUE = Annual water usage/IT equipment energy</li>
+<li>PUE = Total facility power/IT equipment power</li>
+<li>Distributed system：是一系列实体的集合，每个实体都是autonomous, programmable, asynchronous and failure-prone， and communicate through an unreliable communication medium.</li>
+<li>MapReduce：在map和reduce之间存在一步partition，使得对应的key分配到确定的reduce server，partition的方法一般是hash。</li>
+<li>Hadoop MapReduce： 初始输入和最终输出都是写在分布式存储系统中，但是中间结果，例如Map的输出，Reducer的输入，均写在local disk of worker.</li>
+<li>Hadoop YARN： yet another resource negotiator， 用于管理资源分配；包括Global Resource Manager(RM)，Per-server Node Manager(NM)，Per-application Master(AM).</li>
+<li>YARN 容错：NM heartbeats to RM， NM tracking applications， AM heartbeats to RM；</li>
+<li>Slow server： Perform duplicated execution，this is called speculative execution；</li>
 </ul>
-<h1 id="Decision-Boundary"><a href="#Decision-Boundary" class="headerlink" title="Decision Boundary"></a>Decision Boundary</h1><p>中文翻译‘判定边界’，是区分逻辑回归结果对应的不同类的界线。例如对于0-1分类，则是y＝0和y＝1之间的界线。<br>对于sigmoid方程，我们有：</p>
-<ul>
-<li>z = 0，g(z) = 0.5； z = -INIF， g(z) = 0； z = +INIF， g(z) = 1；</li>
-<li>theta’ <em> x &gt;= 0 则 y = 1； theta’ </em> x &lt; 0 则 y = 0。</li>
+<h2 id="Week-Two"><a href="#Week-Two" class="headerlink" title="Week Two -"></a>Week Two -</h2><ul>
+<li>MTTF：平均容错时间：A＊a = B＊b， A， B表示机器数量，a，b表示每一台机器无差错工作时间；</li>
+<li>三种Membership protocols： Complete list(virtual synchrony)， Almost-complete list(Gossip, SWIM)， Partial-random list(SCAMP)</li>
+<li>完备性completeness： 所有错误都被检测到；准确性accuracy：没有错误的检测；速度speed：从出现错误到检测到的时间；规模scale：每个member都有相近的work load；</li>
+<li>centralized heartbeat可能出现单一节点fail；ring heartbeats没法防止多个节点同时fail；all-to-all才能有效保障completeness和容错性；</li>
+<li>Gossip-style：定期向身边member发出信号更新时间戳；分为两个timeout，第一个timeout用来检测fail，第二个timeout用来delete from table：防止收到不正确的更新而使得数据无法删除；</li>
+<li>在gossip中，不选择所有的节点，而只选择部分节点进行gossip，这样可以将每个节点的工作量下降到logN；</li>
+<li>SWIM：向随机K的过程发送请求，让K尝试范围pj，如果任意访问成功，则pj没有fail；时间复杂度也是O(logN)；</li>
+<li>Tree-based multicast protocols：SRM(scalable reliable multicast) and RMTP(reliable multicast transport protocol)</li>
+<li>Push：定期向周围成员（subset） 发送message；Pull：定期向周围成员（subset）获取message；</li>
+<li>前期未收到message的成员多，适合push；后期收到过message的成员多，适合pull；需要传输的数据量大致只有logN；而时间复杂度前期为logN，后期为loglogN；</li>
 </ul>
-<h1 id="Cost-Function"><a href="#Cost-Function" class="headerlink" title="Cost Function"></a>Cost Function</h1><p>价值方程（一直忍不住翻译成‘花费方程’）。通用形式和线性回归类似，也是预测值和实际值的差的平方和的均值。由于h在0到1的区间，所以对于越接近y的h（毕竟在这里，y是｛0，1｝而h是连续函数），其惩罚应该越小。</p>
-<ul>
-<li>if y = 1， Cost(h, y) = -log(h)</li>
-<li>if y = 0， Cost(h, y) = -log(1 - h)</li>
-<li>简化之后得到，Cost(h, y) = -y <em> log(h) - (1 - y) </em> log(1 - h)</li>
-<li>将其并入最终的价值方程，得到J(theta) ＝ (-y’ <em> log(h) - (1 - y)’ </em> log(1 - h)) / m</li>
-<li>对于theta求导之后，得到梯度递减函数为：thetaj = thetaj - alpha/m <em> sum((h(xi) - yi) </em> xi)， 也可向量化成theta = theta - alpha/m <em> X’ </em> (g(X * theta) - y)</li>
-</ul>
-<h1 id="多级分类问题"><a href="#多级分类问题" class="headerlink" title="多级分类问题"></a>多级分类问题</h1><p>简单的说就是运用0-1分类问题的思想，区别在于y = ｛0，1，2，3，…n｝，且我们需要分别求得</p>
-<ul>
-<li>h0(x)，h1(x)，h2(x)，h3(x)等等</li>
-<li>取得hi(x)得最大值</li>
-</ul>
-<h1 id="拟合不足和过度拟合"><a href="#拟合不足和过度拟合" class="headerlink" title="拟合不足和过度拟合"></a>拟合不足和过度拟合</h1><p>拟合不足：训练出来的模型甚至不能很好得预测训练集的结果。价值方程结果过大。<br>拟合不足解决方法：</p>
-<ol>
-<li>调参</li>
-<li>修改模型幂级<br>过度拟合：训练出来的模型过分拟合训练集。价值方程过分理想。<br>过度拟合解决方案：</li>
-<li>降维（减少特征数量）</li>
-<li>规范化theta（降其下降至相近的magnitude）</li>
-</ol>
-<h1 id="规范化theta"><a href="#规范化theta" class="headerlink" title="规范化theta"></a>规范化theta</h1><p>目的是为了平衡不同thetaj之间的权重。做法为是在Cost Function中加入额外的规范化参数项。</p>
-<ul>
-<li>J(theta) = 1/2m <em> (sumOfEachCost^2 + lamda </em> sum(theta^2))。<br>但是这里的lamda需要很小心，过大的lamda会导致拟合不足的问题。<br>拟合之后，回归方程的梯度下降形式有所改变：</li>
-<li>theta需要额外减去一项 alpha <em> lamda / m </em> theta。提取出theta会发现theta乘以（1 － alpha * lamda / m），所以theta不断递减。</li>
-<li>Normal Equation：theta ＝ pinv(X’ <em> X + lamda </em> L) <em> X’ </em> y， L为斜对角线除了（0，0）全为1，其他元素全为0的矩阵。</li>
-</ul>
-
+<h2 id="Week-Three"><a href="#Week-Three" class="headerlink" title="Week Three -"></a>Week Three -</h2><h2 id="Week-Four"><a href="#Week-Four" class="headerlink" title="Week Four -"></a>Week Four -</h2><h2 id="Week-Five"><a href="#Week-Five" class="headerlink" title="Week Five -"></a>Week Five -</h2>
       
     </div>
 
@@ -445,9 +432,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Machine-Learning/" rel="tag"># Machine Learning</a>
+            <a href="/tags/Data-Engineer/" rel="tag"># Data Engineer</a>
           
-            <a href="/tags/Standford-University/" rel="tag"># Standford University</a>
+            <a href="/tags/Cloud-Computing/" rel="tag"># Cloud Computing</a>
           
         </div>
       
@@ -460,8 +447,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/08/14/mlTwo/" rel="next" title="mlTwo">
-                <i class="fa fa-chevron-left"></i> mlTwo
+              <a href="/2017/10/16/vim/" rel="next" title="Vim 小抄">
+                <i class="fa fa-chevron-left"></i> Vim 小抄
               </a>
             
           </div>
@@ -469,10 +456,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/08/24/mlFour/" rel="prev" title="mlFour">
-                mlFour <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -601,7 +584,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#分类的定义"><span class="nav-number">1.</span> <span class="nav-text">分类的定义</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#逻辑回归方程（Sigmoid-Function）"><span class="nav-number">2.</span> <span class="nav-text">逻辑回归方程（Sigmoid Function）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Decision-Boundary"><span class="nav-number">3.</span> <span class="nav-text">Decision Boundary</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Cost-Function"><span class="nav-number">4.</span> <span class="nav-text">Cost Function</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#多级分类问题"><span class="nav-number">5.</span> <span class="nav-text">多级分类问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#拟合不足和过度拟合"><span class="nav-number">6.</span> <span class="nav-text">拟合不足和过度拟合</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#规范化theta"><span class="nav-number">7.</span> <span class="nav-text">规范化theta</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Week-One"><span class="nav-number">1.</span> <span class="nav-text">Week One</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Intro-to-Cloud"><span class="nav-number">1.1.</span> <span class="nav-text">Intro to Cloud</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Week-Two"><span class="nav-number">2.</span> <span class="nav-text">Week Two -</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Week-Three"><span class="nav-number">3.</span> <span class="nav-text">Week Three -</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Week-Four"><span class="nav-number">4.</span> <span class="nav-text">Week Four -</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Week-Five"><span class="nav-number">5.</span> <span class="nav-text">Week Five -</span></a></li></ol></div>
             
 
           </div>
