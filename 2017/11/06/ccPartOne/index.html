@@ -97,7 +97,7 @@
 <meta property="og:url" content="http://linmouwu.com/2017/11/06/ccPartOne/index.html">
 <meta property="og:site_name" content="二进制人生">
 <meta property="og:description" content="对于我这样的懒人而言，梳理知识点真真算不得一件快乐的事情。特别是当知识点杂乱无序，而需要我自己抽丝剥茧般理出个所以然时，更是让人头疼。上完了Coursera上Machine Learning的课程之后，选修了UIUC的Cloud Computing的课程。这是一个specilization，也就是由多门课组成。估计上完这个系列我就该累死了，哈哈哈哈哈。我一定是脑子哪里长洞了。 简而言之，这一系列课">
-<meta property="og:updated_time" content="2017-11-07T03:46:11.000Z">
+<meta property="og:updated_time" content="2017-11-08T03:08:01.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Cloud Computing Part 1">
 <meta name="twitter:description" content="对于我这样的懒人而言，梳理知识点真真算不得一件快乐的事情。特别是当知识点杂乱无序，而需要我自己抽丝剥茧般理出个所以然时，更是让人头疼。上完了Coursera上Machine Learning的课程之后，选修了UIUC的Cloud Computing的课程。这是一个specilization，也就是由多门课组成。估计上完这个系列我就该累死了，哈哈哈哈哈。我一定是脑子哪里长洞了。 简而言之，这一系列课">
@@ -379,7 +379,7 @@
         <p>对于我这样的懒人而言，梳理知识点真真算不得一件快乐的事情。特别是当知识点杂乱无序，而需要我自己抽丝剥茧般理出个所以然时，更是让人头疼。上完了Coursera上Machine Learning的课程之后，选修了UIUC的Cloud Computing的课程。这是一个specilization，也就是由多门课组成。估计上完这个系列我就该累死了，哈哈哈哈哈。我一定是脑子哪里长洞了。</p>
 <p>简而言之，这一系列课程的前两节，主要讲的是云计算的基础知识。虽然在CMU的时候上过CC的课，但是一来早就忘光了，二来两所学校的知识体系也不完全一样，所以还是学了不少新概念。当然这些概念能掌握多牢固能记得多久，就看自己的造化了。废话不多说，开始整理第一部分的内容把。</p>
 <p>第一部分分5周，分别对应下文的每个section。因为这个课程知识基础知识入门，且因为我懒，所以目前都是在梳理理论知识而已。以后有空，想起来要翻翻看的时候，再回头来看吧。</p>
-<h2 id="Week-One"><a href="#Week-One" class="headerlink" title="Week One"></a>Week One</h2><h3 id="Intro-to-Cloud"><a href="#Intro-to-Cloud" class="headerlink" title="Intro to Cloud"></a>Intro to Cloud</h3><ul>
+<h2 id="Week-One-Intro-to-Cloud"><a href="#Week-One-Intro-to-Cloud" class="headerlink" title="Week One - Intro to Cloud"></a>Week One - Intro to Cloud</h2><ul>
 <li>云 ＝ 大量存储空间 ＋ 计算核心；</li>
 <li>Cloud computing 的四个特征：Massive scale， On-demand process， Data-intensive Nature， Cloud computing programming paradigms；</li>
 <li>WUE = Annual water usage/IT equipment energy</li>
@@ -391,7 +391,7 @@
 <li>YARN 容错：NM heartbeats to RM， NM tracking applications， AM heartbeats to RM；</li>
 <li>Slow server： Perform duplicated execution，this is called speculative execution；</li>
 </ul>
-<h2 id="Week-Two"><a href="#Week-Two" class="headerlink" title="Week Two -"></a>Week Two -</h2><ul>
+<h2 id="Week-Two-Membership"><a href="#Week-Two-Membership" class="headerlink" title="Week Two - Membership"></a>Week Two - Membership</h2><ul>
 <li>MTTF：平均容错时间：A＊a = B＊b， A， B表示机器数量，a，b表示每一台机器无差错工作时间；</li>
 <li>三种Membership protocols： Complete list(virtual synchrony)， Almost-complete list(Gossip, SWIM)， Partial-random list(SCAMP)</li>
 <li>完备性completeness： 所有错误都被检测到；准确性accuracy：没有错误的检测；速度speed：从出现错误到检测到的时间；规模scale：每个member都有相近的work load；</li>
@@ -403,7 +403,59 @@
 <li>Push：定期向周围成员（subset） 发送message；Pull：定期向周围成员（subset）获取message；</li>
 <li>前期未收到message的成员多，适合push；后期收到过message的成员多，适合pull；需要传输的数据量大致只有logN；而时间复杂度前期为logN，后期为loglogN；</li>
 </ul>
-<h2 id="Week-Three"><a href="#Week-Three" class="headerlink" title="Week Three -"></a>Week Three -</h2><h2 id="Week-Four"><a href="#Week-Four" class="headerlink" title="Week Four -"></a>Week Four -</h2><h2 id="Week-Five"><a href="#Week-Five" class="headerlink" title="Week Five -"></a>Week Five -</h2>
+<h2 id="Week-Three-P2P"><a href="#Week-Three-P2P" class="headerlink" title="Week Three - P2P"></a>Week Three - P2P</h2><ul>
+<li>P2P：Peer-to-peer，分布式系统中常见的模式；</li>
+<li>Naspter：分为server和client，server存储directory，包括文件名和文件基本信息；client链接到server，存储文件本身；查询过程如下：</li>
+</ul>
+<ol>
+<li>client发送query到server；</li>
+<li>所有server查找diretory，然后返回对应的文件所在的host的ip和port＃；</li>
+<li>client ping到最合适的host，这个host也是另外的client，并下载文件；</li>
+<li>所有沟通都是TCP；</li>
+</ol>
+<ul>
+<li>Gnutella：只有client，也叫servents，servents存储文件本身，以及到邻近servents的指针；Gnutella包括5中不同的信息：</li>
+</ul>
+<ol>
+<li>query：查找；</li>
+<li>queryhit：查找成功回复；</li>
+<li>ping：探测其它邻接点；</li>
+<li>pong：回复探测；</li>
+<li>push：指示准备开始文件传输；通过requestor push一个信息建立TCP通道；</li>
+</ol>
+<ul>
+<li>Gnutella为了避免海量数据交换，每个信息会有id和TTL，id用来标示已经收过的信息，TTL标示信息存活的时间长度；queryhit和pong都是沿原路返回；</li>
+<li>FastTrack： 跟Gnutella类似，但是存在supernode，存储directory listing nearby files，supernode会不定期更换；</li>
+<li>BitTorrent： 文件被分割成小块存储在不同的peer上，采取local rarest first策略下载blocks，一个block可能存在于多个peer上，选择最快的下载；BitTorrent的几个概念：</li>
+</ul>
+<ol>
+<li>Tracker：维护peer的信息；</li>
+<li>Peer：提供文件下载和上传；</li>
+<li>.torrent file：种子文件，存储tracker信息和文件信息；当peer下载.torrent所对应的文件时，自己成文seed，可以提供文件下载；</li>
+</ol>
+<ul>
+<li>Chord： 环形分布式系统，通过哈希函数确定文件存储位置（取最近的下一个节点）；此算法的时间和空间复杂度均为logN；</li>
+<li>在chord中，当需要寻找文件时，从当前peer的最远端开始，逐步向文件的哈希函数值逼近；</li>
+<li>Pastry： routing table based prefix matching；每个peer维护一个prefix matching table；</li>
+<li>Kelips： node会被分成不同的group，不同group之间会有contact node；文件会在本group和其它group中都有副本；lookup时先查找本group，然后跨group；<h2 id="Week-Four-NoSQL"><a href="#Week-Four-NoSQL" class="headerlink" title="Week Four - NoSQL"></a>Week Four - NoSQL</h2></li>
+<li>NoSQL：not only SQL，unstructured， no schema imposed， column storage；</li>
+<li>Cassandra： 运用chord进行文件存储，但是不直接使用finger table，而是哈希函数；运用snitch表示节点位置：x.dc.rack.node；</li>
+<li>分布式写有多种策略：包括timestamp， quorum， coordinator等；</li>
+<li>对于cassandra而言： 先写到local log，然后写到memtable，最后当memtable满了，写到SSTable with data file， index file and bloom filter；</li>
+<li>bloom filter 通过多个哈希函数，标记每个k是否存储large bit map中；当所有哈希值均有对应，则key存在；</li>
+<li>Cassandra中任何一个node都可以是coordinator，所以需要维护所有的存活node的列表；其membership维护方式是gossip；</li>
+<li>Consistency：strong consistency，casual consistency， eventual consistency；</li>
+<li>HBase：结构大致为：HRegionServer - HRegion - Store - MemStore and StoreFile - HFile；</li>
+<li>HRegionServer是server本身，其下的region包括了replicated 的数据；</li>
+<li>clock skew： 时间数值上的差别；非0说明时间不同步；</li>
+<li>clock drift： 时间速度上的差别；非0导致skew非0；</li>
+<li>Maximum drift rate：最大时间差比率， 当skew为M，我们需要不断每M/2*MDR的时间就同步一次；</li>
+<li>External sync和internal sync：表示当前时钟对外和对group内部时钟的同步；当组外同步差值最大为D，则组内同步差值最大可能为2＊D；</li>
+<li>NTP： network time protocal；</li>
+<li>Lamport timestamp：每个进程初始时间为0，当发生动作或者发送信息时，时间戳＋1；当接到信息时，时间戳为当前值和消息时间戳的值中较大者＋1；</li>
+<li>Vector clock：与时间戳类似，只是维护的是vector而非单一timestamp；通过不同的vector的数值比较，可以判断事件之间是否可以并发；Vi &lt;= Vj 则不可；<h2 id="Week-Five"><a href="#Week-Five" class="headerlink" title="Week Five -"></a>Week Five -</h2></li>
+</ul>
+
       
     </div>
 
@@ -584,7 +636,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Week-One"><span class="nav-number">1.</span> <span class="nav-text">Week One</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Intro-to-Cloud"><span class="nav-number">1.1.</span> <span class="nav-text">Intro to Cloud</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Week-Two"><span class="nav-number">2.</span> <span class="nav-text">Week Two -</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Week-Three"><span class="nav-number">3.</span> <span class="nav-text">Week Three -</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Week-Four"><span class="nav-number">4.</span> <span class="nav-text">Week Four -</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Week-Five"><span class="nav-number">5.</span> <span class="nav-text">Week Five -</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Week-One-Intro-to-Cloud"><span class="nav-number">1.</span> <span class="nav-text">Week One - Intro to Cloud</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Week-Two-Membership"><span class="nav-number">2.</span> <span class="nav-text">Week Two - Membership</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Week-Three-P2P"><span class="nav-number">3.</span> <span class="nav-text">Week Three - P2P</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Week-Four-NoSQL"><span class="nav-number">4.</span> <span class="nav-text">Week Four - NoSQL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Week-Five"><span class="nav-number">5.</span> <span class="nav-text">Week Five -</span></a></li></ol></div>
             
 
           </div>
