@@ -74,7 +74,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Data Engineer,Cloud Computing," />
 
 
 
@@ -90,16 +90,17 @@
 
 
 
-<meta name="description" content="NULL, VOID, NIL">
+<meta name="description" content="因为最近有一两个面试，而且跟系统架构还有点关系，就回去看了一下CC当时的Kafka和Samza。老实说虽然当时project做完了， 但是具体是怎么做的，系统的结构是怎么样的，各种component是干嘛的，到现在都没理清楚。所以现在回过头再扫一眼吧。如果过两天真的能在面试中说到，那就嘿嘿嘿……还是……很想去加州…… （乱入：好像技术博客里不应该出现散文。Anyway这个博客知道的人也不超过3个。">
+<meta name="keywords" content="Data Engineer,Cloud Computing">
 <meta property="og:type" content="article">
-<meta property="og:title" content="kafkaSamza">
+<meta property="og:title" content="Kafka &amp; Samza">
 <meta property="og:url" content="http://linmouwu.com/2017/12/03/kafkaSamza/index.html">
 <meta property="og:site_name" content="二进制人生">
-<meta property="og:description" content="NULL, VOID, NIL">
-<meta property="og:updated_time" content="2017-12-04T00:12:25.000Z">
+<meta property="og:description" content="因为最近有一两个面试，而且跟系统架构还有点关系，就回去看了一下CC当时的Kafka和Samza。老实说虽然当时project做完了， 但是具体是怎么做的，系统的结构是怎么样的，各种component是干嘛的，到现在都没理清楚。所以现在回过头再扫一眼吧。如果过两天真的能在面试中说到，那就嘿嘿嘿……还是……很想去加州…… （乱入：好像技术博客里不应该出现散文。Anyway这个博客知道的人也不超过3个。">
+<meta property="og:updated_time" content="2017-12-04T01:57:17.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="kafkaSamza">
-<meta name="twitter:description" content="NULL, VOID, NIL">
+<meta name="twitter:title" content="Kafka &amp; Samza">
+<meta name="twitter:description" content="因为最近有一两个面试，而且跟系统架构还有点关系，就回去看了一下CC当时的Kafka和Samza。老实说虽然当时project做完了， 但是具体是怎么做的，系统的结构是怎么样的，各种component是干嘛的，到现在都没理清楚。所以现在回过头再扫一眼吧。如果过两天真的能在面试中说到，那就嘿嘿嘿……还是……很想去加州…… （乱入：好像技术博客里不应该出现散文。Anyway这个博客知道的人也不超过3个。">
 
 
 
@@ -133,7 +134,7 @@
 
 
 
-  <title>kafkaSamza | 二进制人生</title>
+  <title>Kafka & Samza | 二进制人生</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -303,7 +304,7 @@
             
             
               
-                kafkaSamza
+                Kafka & Samza
               
             
           </h1>
@@ -329,6 +330,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/理论学习/" itemprop="url" rel="index">
+                    <span itemprop="name">理论学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -353,7 +376,43 @@
       
 
       
-        
+        <p>因为最近有一两个面试，而且跟系统架构还有点关系，就回去看了一下CC当时的Kafka和Samza。老实说虽然当时project做完了， 但是具体是怎么做的，系统的结构是怎么样的，各种component是干嘛的，到现在都没理清楚。所以现在回过头再扫一眼吧。如果过两天真的能在面试中说到，那就嘿嘿嘿……<br>还是……很想去加州……</p>
+<p>（乱入：好像技术博客里不应该出现散文。Anyway这个博客知道的人也不超过3个。一会儿写一篇吧。</p>
+<h2 id="主要参考资料："><a href="#主要参考资料：" class="headerlink" title="主要参考资料："></a>主要参考资料：</h2><p><a href="http://colobu.com/2014/08/06/kafka-quickstart/" target="_blank" rel="external">Kafka快速入门</a><br><a href="http://www.aboutyun.com/thread-9341-1-1.html" target="_blank" rel="external">kafka入门：简介、使用场景、设计原理、主要配置及集群搭建</a><br><a href="https://toutiao.io/posts/uwc31c/preview" target="_blank" rel="external">流式数据处理框架 Samza 介绍</a><br><a href="http://www.open-open.com/lib/view/open1426065900123.html" target="_blank" rel="external">三个大数据处理框架：Storm，Spark和Samza 介绍比较</a></p>
+<h2 id="Kafka-distributed-messaging-system"><a href="#Kafka-distributed-messaging-system" class="headerlink" title="Kafka - distributed messaging system"></a>Kafka - distributed messaging system</h2><p>Kafka是一个分布式的消息系统。其消息消费的模式是publish-subscribe，意思就是生产者producer进行消息发布，且发布到的是不同的主题topics中，消费者consumer订阅消息渠道，当有消息从消息渠道里产生时，所有订阅的消费者都能获得消息。Kafka使用一个commit log，日志系统，去持久化存储数据。这个日志系统是有序，不可改，只允许append的数据结构。作为一个Kafka的用户，however，我们并不需要真正去了解这些内部实现。就像学Java不需要从JVM从头学起一样。大概有些概念即可。</p>
+<h2 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h2><ul>
+<li>Topics：消息的主题，不同的主题代表了不同的消息渠道；但是一个topic可以分成多个partition，每个partition对应到一个用户，这点很重要；</li>
+<li>Partition：消息分区，把同一个主题的消息划分成不同的区域，每个partition都是一个append log，会把新消息append到结尾；partition是Kafka消息并行的单位，partition越多throughput越高；不同的partition会有不同的offset用来表示每个consumer收到的消息的位置；partition中的offset由consumer控制；同一个topics下不同partition的消息可能一样，也可以是根据key进行partition；</li>
+<li>Producer：生产者，产生消息的地方，可以是各种front-end service；</li>
+<li>Consumer：消费者，消费消息的地方，可以是各种back-end service，包括hadoop集群，real-time monitoring，以及我们即将看到的Samza；</li>
+<li>Broker：信息存储和副本产生的服务器，多个broker组成一个Kafka集群，这是生产者和消费者的连接点；</li>
+<li>Replication：partition会对数据进行replication，并在其中选出leader和followers，leader和followers一般位于不同的broker上，leader负责读写，followers同步更新数据；当leader所在的broker宕机之后，replications会重新选择leader；</li>
+<li>Zookeeper：</li>
+</ul>
+<h2 id="Yarn-v-s-Zookeeper插曲"><a href="#Yarn-v-s-Zookeeper插曲" class="headerlink" title="Yarn v.s. Zookeeper插曲"></a>Yarn v.s. Zookeeper插曲</h2><p>这两者其实没啥直接关系。只是因为同时出现在分布式系统里，又因为我是新手，老是把两种弄混，就顺道记一下。<br>Yarn：yet another resource negotiator：包括了resource manager，node master和application master，用于管理哪些检测那些节点有可用资源，并予以分配；<br>Zookeeper：集群管理和协调的系统，例如统一命名服务，分布式应用配置，主从节点管理等等，跟资源分配关系不大；倒是主节点挂了可以找它；</p>
+<h2 id="Kafka场景实例"><a href="#Kafka场景实例" class="headerlink" title="Kafka场景实例"></a>Kafka场景实例</h2><ul>
+<li>用户行为追踪：tracking user activities on the website, such as user clicks；</li>
+<li>日志收集系统：将不同的application的操作日志批量地、异步地收集起来；</li>
+</ul>
+<h2 id="Samza-distributed-streaming-processing-system"><a href="#Samza-distributed-streaming-processing-system" class="headerlink" title="Samza - distributed streaming processing system"></a>Samza - distributed streaming processing system</h2><p>Samza是在Kafka之后又一个由LinkedIn开发的系统，用于对流式数据进行处理；</p>
+<ul>
+<li>Streaming Layer：数据流输入层，在这里我们用的就是Kafa；</li>
+<li>Execution Layer：管理和协调不同集群上的任务分配；</li>
+<li>Processing Layer：既Samza，数据处理层</li>
+</ul>
+<h2 id="相关概念-1"><a href="#相关概念-1" class="headerlink" title="相关概念"></a>相关概念</h2><ul>
+<li>Job：逻辑上对一组给定的输入流进行处理之后，输出指定的输出流的过程，称为一个作业；</li>
+<li>Task：实现上，将一个作业分成多个任务；每个任务可以读取1到多个partition的内容；</li>
+<li>Container：负责具体task实例的启动和管理，每个container有自己单独的虚拟机，不同container可以在不同的机器上运行；</li>
+<li>TaskRunner：Container中更细粒度的管理task的组件；I don’t care….</li>
+<li>如果需要处理多个数据流，需要对数据流按照key进行partition；</li>
+<li>对于Samza user而言，如果只focus在代码，那我们需要实现的代码其实就是Task；</li>
+</ul>
+<h2 id="Storm-v-s-Spark-Streaming-v-s-Samza"><a href="#Storm-v-s-Spark-Streaming-v-s-Samza" class="headerlink" title="Storm v.s. Spark Streaming v.s. Samza"></a>Storm v.s. Spark Streaming v.s. Samza</h2><ul>
+<li>Storm：需要先设计DAG的拓扑topology，一个拓扑即是一个Job；然后从Sprout读取外界的原数据，读取的方式可以是API等；Sprout生成元组tuple，并把tuple以流的形式发布到bolt中；bolt是真正进行数据处理的地方，也是编程的地方；</li>
+<li>Spark Streaming：micro-batch的概念，大致是将batch的job分割成很多小块，每个小块对应一个RDD，然后进行处理；处理的API类似于RDD的原生API。</li>
+</ul>
+
       
     </div>
 
@@ -379,6 +438,14 @@
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Data-Engineer/" rel="tag"># Data Engineer</a>
+          
+            <a href="/tags/Cloud-Computing/" rel="tag"># Cloud Computing</a>
+          
+        </div>
       
 
       
@@ -444,8 +511,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
@@ -507,6 +583,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#主要参考资料："><span class="nav-number">1.</span> <span class="nav-text">主要参考资料：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Kafka-distributed-messaging-system"><span class="nav-number">2.</span> <span class="nav-text">Kafka - distributed messaging system</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关概念"><span class="nav-number">3.</span> <span class="nav-text">相关概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Yarn-v-s-Zookeeper插曲"><span class="nav-number">4.</span> <span class="nav-text">Yarn v.s. Zookeeper插曲</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Kafka场景实例"><span class="nav-number">5.</span> <span class="nav-text">Kafka场景实例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Samza-distributed-streaming-processing-system"><span class="nav-number">6.</span> <span class="nav-text">Samza - distributed streaming processing system</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关概念-1"><span class="nav-number">7.</span> <span class="nav-text">相关概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Storm-v-s-Spark-Streaming-v-s-Samza"><span class="nav-number">8.</span> <span class="nav-text">Storm v.s. Spark Streaming v.s. Samza</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
